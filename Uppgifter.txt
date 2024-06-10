@@ -1,0 +1,75 @@
+// med kommentarer förklara varje klass och vad den gör
+Använd er av /* 	*/
+
+
+Överblick / controller
+In- och utloggning
+Registreringssida
+Borttagning av användare
+Delete-controller
+Update-controller (uppdatera lösenord)
+Skapa en preset av användare, ladda in USER, ADMIN (repository.save(preset))
+DTO-objekt, validering av email och lösenord. (@Validate param)
+PasswordEncoder encode -> hash lösenordet
+MaskinUtils-klass -> statisk metod, anonymiserar en användares email innan det loggas
+Skapa upp admin i UserService som statisk loader
+
+
+Thymeleaf - HTML
+Logout - ”ska stå utloggad och sen routa till inloggning”
+Register - ”csrf-skydd”
+ / home- root ”ska stå att man är inloggad”
+Admin-page
+Delete - ”csrf-skydd”, ta in epostadressen
+register_success, visa när användaren är registrerad
+error_page - defualtFailureURL
+update_success, ska visas när vi har uppdaterat allt korrekt
+
+Static  - Oskar
+404 - täcker när användaren inte hittas
+
+Loggning
+maska email, logga alla endpoints LOG.warn,
+En debug för varje endpoint
+
+
+Konfigfil
+
+
+
+Behörigheter - SecurityFilterChain
+Förstasidan - ”alla får se men ska vara autentiserad, inkludera en utloggningsknapp”
+Register - endast admin får registrera nya användare, ny användare får USER
+Delete - endast admin får deleta en user
+HTMLUtils - för att tvätta datat (controller)
+
+Testing
+MockMvc
+Förstasidan - Testa första med och utan en autentiserad användare
+Registreringsfunktion - Framgångsrik registrering och misslyckad registrering
+Borttagningsfunktion - -||-
+Använda httpBasic vid testning, ta bort csrf och formLogin
+
+VG-delen
+DTO
+H2 istället för InMemoryUserDetails
+Alla fält ska valideras @Validate
+	bara för att säkerställa. Fråga Håkan om Model går lika bra som DTO
+
+
+
+
+
+Uppdatering - Fredrik
+Registrering - Oskar
+Ta bort - Alexander
+
+Loggning - konfigfilen tillsammans
+
+Tester - tillsammans  (ett test var)
+Uppdatering - Fredrik
+Registering - Oskar
+Ta bort - Alexander
+
+
+Oskar - 404 static
