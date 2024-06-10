@@ -51,8 +51,4 @@ public class SecurityConfiguration {
     }
 
 
-    @Bean
-    public UserDetailsServiceImpl userDetailsService() {
-        return new UserDetailsServiceImpl();
-    }
 }

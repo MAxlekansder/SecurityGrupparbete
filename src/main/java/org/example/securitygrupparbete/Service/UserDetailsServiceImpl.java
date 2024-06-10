@@ -31,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         if(user.isPresent()){
             var userObj = user.get();
-
+            LOG.info("Logging in user " + userObj.getUsername());
             return User.builder()
                     .username(userObj.getUsername())
                     .password(userObj.getPassword())
@@ -40,9 +40,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         else {
+            LOG.info("User not found for username:" + username);
             throw new UsernameNotFoundException(username);
         }
-
     }
 }
 

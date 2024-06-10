@@ -1,0 +1,3 @@
+2024-06-10 13:30:26 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Starting SecurityGrupparbeteApplication using Java 22.0.1 with PID 41214 (/Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete/target/classes started by alexanderhasslund in /Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete)
+2024-06-10 13:30:26 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-10 13:30:28 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Started SecurityGrupparbeteApplication in 1.574 seconds (process running for 1.967)
