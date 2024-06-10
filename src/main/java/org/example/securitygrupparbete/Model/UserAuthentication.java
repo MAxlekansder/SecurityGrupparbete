@@ -12,5 +12,7 @@ public class UserAuthentication {
     private String username;
     private String password;
     private String email;
+    private String role;
+    private int age;
 
 }
