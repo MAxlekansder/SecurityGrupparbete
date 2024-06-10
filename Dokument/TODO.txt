@@ -1,0 +1,18 @@
+
+
+1 Login
+
+2 Register with CSRF, for User "ADMIN". Validate email and password with DTO-object.
+
+3 Delete user with CSRF. Only user "Admin" can delete users.
+Show page with input for Email address.
+Show successful delete on page.
+If user does not exist, show
+
+4 Logout page
+
+5 First page "/" permitAll with a logout button
+
+6
+
+
