@@ -1,1 +1,1 @@
-2024-06-11 09:18:14 [http-nio-8080-exec-4] INFO  org.example.securitygrupparbete.Controller.UserController - Saving new user objectorg.example.securitygrupparbete.Model.UserAuthentication@457352ae
+2024-06-11 10:44:53 [http-nio-8080-exec-1] DEBUG org.example.securitygrupparbete.Controller.UserController - funkar?

@@ -10,7 +10,6 @@ import jakarta.persistence.Id;
 @Entity
 public class UserDTO {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -68,4 +67,5 @@ public class UserDTO {
     public void setAge(int age) {
         this.age = age;
     }
+
 }

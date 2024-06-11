@@ -1,5 +1,4 @@
-2024-06-11 09:18:04 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Starting SecurityGrupparbeteApplication using Java 22.0.1 with PID 30778 (/Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete/target/classes started by oskarjohansson in /Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete)
-2024-06-11 09:18:04 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - No active profile set, falling back to 1 default profile: "default"
-2024-06-11 09:18:06 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Started SecurityGrupparbeteApplication in 1.804 seconds (process running for 2.144)
-2024-06-11 09:18:14 [http-nio-8080-exec-4] INFO  org.example.securitygrupparbete.Controller.UserController - Saving new user objectorg.example.securitygrupparbete.Model.UserAuthentication@457352ae
-2024-06-11 09:18:16 [http-nio-8080-exec-8] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user oskar
+2024-06-11 10:44:39 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Starting SecurityGrupparbeteApplication using Java 22.0.1 with PID 61015 (/Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete/target/classes started by alexanderhasslund in /Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete)
+2024-06-11 10:44:39 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-11 10:44:41 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Started SecurityGrupparbeteApplication in 1.53 seconds (process running for 1.883)
+2024-06-11 10:44:53 [http-nio-8080-exec-1] DEBUG org.example.securitygrupparbete.Controller.UserController - funkar?
