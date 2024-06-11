@@ -1,7 +1,6 @@
 package org.example.securitygrupparbete.Repository;
 
-import org.apache.catalina.User;
-import org.example.securitygrupparbete.Model.UserAuthentication;
+import org.example.securitygrupparbete.Model.UserDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +8,7 @@ import java.util.Optional;
 
 
 @Repository
-public interface UserRepository extends JpaRepository<UserAuthentication, Long> {
+public interface UserRepository extends JpaRepository<UserDTO, Long> {
 
-    Optional<UserAuthentication> findByUsername(String username);
+    Optional<UserDTO> findByUsername(String username);
 }

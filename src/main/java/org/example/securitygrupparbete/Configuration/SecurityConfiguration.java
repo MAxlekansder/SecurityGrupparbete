@@ -38,11 +38,10 @@ public class SecurityConfiguration {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(autRequest ->
-                        autRequest.requestMatchers("/", "/login").permitAll()
+                        autRequest.requestMatchers("/", "/register").permitAll()
                 )
                 .httpBasic(Customizer.withDefaults())
-                .formLogin(formLogin ->
-                        formLogin.loginPage("/login")
+                .formLogin(Customizer.withDefaults()
                 )
                 .build();
     }

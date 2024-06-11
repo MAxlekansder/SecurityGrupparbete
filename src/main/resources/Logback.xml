@@ -59,12 +59,12 @@
         <appender-ref ref= "CONTROLLER_FILE" />
     </logger>
 
-    <logger name="org.example.securitygrupparbete.Service.*" level="INFO">
+    <logger name="org.example.securitygrupparbete.Service" level="INFO">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref= "SERVICE_FILE" />
     </logger>
 
-    <logger name="org.example.securitygrupparbete.Configuration.*" level="INFO">
+    <logger name="org.example.securitygrupparbete.Configuration" level="INFO">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref= "CONFIGURATION_FILE" />
     </logger>
