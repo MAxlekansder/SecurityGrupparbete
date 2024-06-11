@@ -43,8 +43,13 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(autRequest ->
                         autRequest
-                                .requestMatchers("/", "/register").permitAll()
-                                .requestMatchers("/adminpage", "/update").hasRole("ADMIN")
+                                .requestMatchers("/").permitAll()
+                                .requestMatchers( "/adminpage"
+                                                    , "/update"
+                                                    , "/deleteUser"
+                                                    , "/deleteUserResult"
+                                                    , "/register")
+                                .hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->

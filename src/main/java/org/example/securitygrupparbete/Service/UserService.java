@@ -4,7 +4,8 @@ package org.example.securitygrupparbete.Service;
 import jakarta.annotation.PostConstruct;
 import org.example.securitygrupparbete.Model.UserDTO;
 import org.example.securitygrupparbete.Repository.UserRepository;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
@@ -14,6 +15,7 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -48,7 +50,9 @@ public class UserService {
         Optional<UserDTO> user = userRepository.findByEmail(email);
 
         if (user.isPresent()) {
+            LOG.info("Deleting user", user.get().getId(),  " ", user.get().getUsername());
             userRepository.deleteById(user.get().getId());
+
             return true;
         }
         return false;
