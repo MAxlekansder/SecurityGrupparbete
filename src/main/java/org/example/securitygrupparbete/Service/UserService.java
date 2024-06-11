@@ -31,4 +31,9 @@ public class UserService {
 
     }
 
+
+
+    public boolean deleteUserByEmail() {
+        
+    }
 }
