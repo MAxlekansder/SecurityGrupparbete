@@ -1,3 +1,2 @@
 
-2024-06-11 11:36:15 [http-nio-8080-exec-2] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user Admin
-
+2024-06-11 13:14:34 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user Admin

@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 
 
 @Entity
-public class UserDTO {
+public class UserDTO { //Alex
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

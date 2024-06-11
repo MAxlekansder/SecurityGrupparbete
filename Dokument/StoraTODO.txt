@@ -5,7 +5,7 @@ Använd er av /* 	*/
 
 Överblick / controller
 Inlogging                           x
-utloggning
+utloggning                          x
 Registreringssida                   X
 Borttagning av användare
 Delete-controller
@@ -13,25 +13,25 @@ Update-controller (uppdatera lösenord)
 Skapa en preset av användare, ladda in USER, ADMIN (repository.save(preset))                x
 DTO-objekt, validering av email och lösenord. (@Validate param)                             x
 PasswordEncoder encode -> hash lösenordet                                                   x
-MaskinUtils-klass -> statisk metod, anonymiserar en användares email innan det loggas
+MaskinUtils-klass -> statisk metod, anonymiserar en användares email innan det loggas       x
 Skapa upp admin i UserService som statisk loader                                            x
 
 
 Thymeleaf - HTML
-Logout - ”ska stå utloggad och sen routa till inloggning”
+Logout - ”ska stå utloggad och sen routa till inloggning”                                   x
 Register - ”csrf-skydd”
- / home- root ”ska stå att man är inloggad”
+ / home- root ”ska stå att man är inloggad”                                                 x
 Admin-page
 Delete - ”csrf-skydd”, ta in epostadressen
-register_success, visa när användaren är registrerad
+register_success, visa när användaren är registrerad                                        x
 error_page - defualtFailureURL
 update_success, ska visas när vi har uppdaterat allt korrekt
 
 Static  - Oskar
-404 - täcker när användaren inte hittas
+404 - täcker när användaren inte hittas                                                     x
 
 Loggning
-maska email, logga alla endpoints LOG.warn,
+maska email, logga alla endpoints LOG.warn,                                                 x
 En debug för varje endpoint
 
 
@@ -40,10 +40,10 @@ Konfigfil
 
 
 Behörigheter - SecurityFilterChain // alexander
-Förstasidan - ”alla får se men ska vara autentiserad, inkludera en utloggningsknapp”
-Register - endast admin får registrera nya användare, ny användare får USER
+Förstasidan - ”alla får se men ska vara autentiserad, inkludera en utloggningsknapp”            x
+Register - endast admin får registrera nya användare, ny användare får USER                     x
 Delete - endast admin får deleta en user
-HTMLUtils - för att tvätta datat (controller)                   x
+HTMLUtils - för att tvätta datat (controller)                                                   x
 
 Testing
 MockMvc
@@ -53,17 +53,16 @@ Borttagningsfunktion - -||-
 Använda httpBasic vid testning, ta bort csrf och formLogin
 
 VG-delen
-DTO                                         x
-H2 istället för InMemoryUserDetails         x
-Alla fält ska valideras @Validate
-	bara för att säkerställa. Fråga Håkan om Model går lika bra som DTO
+DTO                                                                                             x
+H2 istället för InMemoryUserDetails                                                             x
+Alla fält ska valideras @Validate                                                               x
+bara för att säkerställa. Fråga Håkan om Model går lika bra som DTO
 
 
 
 
 
 Uppdatering - Fredrik
-Registrering - Oskar x
 Ta bort - Alexander
 
 Loggning - konfigfilen tillsammans
