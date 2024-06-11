@@ -74,11 +74,11 @@ public class UserController {
  if(bindingResult.hasErrors()) {
             return "register";
         } else {
-            user.setRole("USER");
-            user.setUsername(HtmlUtils.htmlEscape(user.getUsername()));
-            user.setEmail(HtmlUtils.htmlEscape(user.getEmail()));
-            user.setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(user.getPassword())));
-            userRepository.save(user);
+            user.setRole("USER")
+                .setUsername(HtmlUtils.htmlEscape(user.getUsername()))
+                .setEmail(HtmlUtils.htmlEscape(user.getEmail()))
+                .setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(user.getPassword())));
+                userRepository.save(user);
             LOG.info("Saving new user object" + "Username:" + user.getUsername() + "Masking email: " + MaskingService.maskEmail(user.getEmail()) );
 
             return "saveUserSuccessfull";
@@ -87,14 +87,16 @@ public class UserController {
 
 
 
-    @PutMapping("/updateUser")
+    @PostMapping("/deleteUser")
     public String deleteUser(Model model) {         // Alexander
+
         return "user";
     }
 
 
     @GetMapping("/logout")
     public String logoutUser(Model model) {         // Alexander
+
         return "logout";
     }
 

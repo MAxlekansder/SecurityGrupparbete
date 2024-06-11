@@ -53,8 +53,8 @@ Borttagningsfunktion - -||-
 Använda httpBasic vid testning, ta bort csrf och formLogin
 
 VG-delen
-DTO
-H2 istället för InMemoryUserDetails
+DTO                                         x
+H2 istället för InMemoryUserDetails         x
 Alla fält ska valideras @Validate
 	bara för att säkerställa. Fråga Håkan om Model går lika bra som DTO
 
