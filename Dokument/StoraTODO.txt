@@ -6,12 +6,12 @@ Använd er av /* 	*/
 Överblick / controller
 Inlogging                           x
 utloggning                          x
-Registreringssida                   X
+Registreringssida                   x
 Borttagning av användare            x
 Delete-controller                   x
 Update-controller (uppdatera lösenord)                                                      x
 Skapa en preset av användare, ladda in USER, ADMIN (repository.save(preset))                x
-DTO-objekt, validering av email och lösenord. (@Validate param)                             x
+DTO-objekt, validering av email och lösenord. (@Validate param)
 PasswordEncoder encode -> hash lösenordet                                                   x
 MaskinUtils-klass -> statisk metod, anonymiserar en användares email innan det loggas       x
 Skapa upp admin i UserService som statisk loader                                            x
@@ -23,7 +23,7 @@ Register - ”csrf-skydd”
 
  / home- root ”ska stå att man är inloggad”                                                 x
 
-Admin-page
+Admin-page                                                                                  x
 Delete - ”csrf-skydd”, ta in epostadressen                                                  x
 register_success, visa när användaren är registrerad                                        x
 
