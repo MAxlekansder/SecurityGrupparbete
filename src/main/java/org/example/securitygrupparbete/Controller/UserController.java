@@ -22,55 +22,60 @@ import java.security.Principal;
 
 @Controller
 public class UserController {
-
+    
     private final static Logger LOG = LoggerFactory.getLogger(UserController.class);
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final UserService userService;
-
-
+    
+    
     public UserController(PasswordEncoder passwordEncoder, UserRepository userRepository, UserService userService) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.userService = userService;
-
+        
     }
-
+    
+    
     @GetMapping("/update")
     public String getUpdate(Model model) {
         model.addAttribute("user", new UserDTO());
         return "update";
     }
-
+    
+    
     @PostMapping("/update")
     public String updateUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
-
-        if (result.hasErrors()){
+        
+        if (result.hasErrors()) {
             return "update";
         }
-      
-
-
-
-
-
-        return "updateUserSuccessfull";
+        boolean success = userService.updatePassword(user.getEmail(), user.getPassword());
+        if (success) {
+            return "updateUserSuccessfull";
+        } else {
+            model.addAttribute("error", "User could not be found");
+            return "update";
+        }
+        
+        
     }
-
-
+    
+    
     @GetMapping("/register")//Oskar
-    public String register(Model model){
-
+    public String register(Model model) {
+        
         model.addAttribute("user", new UserDTO());
         return "register";
-
+        
     }
-
+    
+    
     @PostMapping("/register")//Oskar
     public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
-
-
- if(bindingResult.hasErrors()) {
+        
+        
+        if (bindingResult.hasErrors()) {
             return "register";
         } else {
             user.setRole("USER");
@@ -78,37 +83,40 @@ public class UserController {
             user.setEmail(HtmlUtils.htmlEscape(user.getEmail()));
             user.setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(user.getPassword())));
             userRepository.save(user);
-            LOG.info("Saving new user object" + "Username:" + user.getUsername() + "Masking email: " + MaskingService.maskEmail(user.getEmail()) );
-
+            LOG.info("Saving new user object" + "Username:" + user.getUsername() + "Masking email: " + MaskingService.maskEmail(user.getEmail()));
+            
             return "saveUserSuccessfull";
         }
     }
-
-
-
-
+    
+    
     public String deleteUser(Model model) {         // Alexander
         return "user";
     }
-
+    
+    
     @GetMapping("/logout")
     public String logoutUser(Model model) {         // Alexander
         return "logout";
     }
-
+    
+    
     @GetMapping("/")
     public String presentHomepageForUser(Principal principal) {     // Oskar
-
-        if(principal.getName().isBlank()){
-            return"homepage";
+        
+        if (principal.getName().isBlank()) {
+            return "homepage";
         }
-
+        
         return "homepage";
     }
-
+    
+    
     @GetMapping("/homepage")
     public String homepage(Model model) { // Fredrik
         LOG.debug("funkar?");
         return "homepage";
     }
+    
+    
 }

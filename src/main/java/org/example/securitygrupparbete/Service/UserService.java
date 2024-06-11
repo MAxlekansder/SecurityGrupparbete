@@ -7,6 +7,8 @@ import org.example.securitygrupparbete.Repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -29,6 +31,35 @@ public class UserService {
 
         userRepository.save(user);
     }
-
-
+    
+    
+    // TODO: 2024-06-11 ta bort
+    @PostConstruct
+    private void saveRegUser(){
+        UserDTO user = new UserDTO();
+        
+        user.setUsername("User");
+        user.setEmail("kalle@test.com");
+        user.setPassword(passwordEncoder.encode("1234"));
+        user.setRole("USER");
+        
+        userRepository.save(user);
+    }
+    
+    
+    
+    
+    public boolean updatePassword(String email, String password) {
+        Optional<UserDTO> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent()){
+            UserDTO user = userOptional.get();
+            user.setPassword(passwordEncoder.encode(password));
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+        
+    }
+    
+    
 }
