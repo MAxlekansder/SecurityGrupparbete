@@ -19,15 +19,24 @@ public class UserService {
     }
 
 
-    @PostConstruct
-    private void saveAdminUser(){
+    @PostConstruct //Alex
+    private void saveAdminUser(){ // Oskar
+        UserDTO admin = new UserDTO();
+
+        admin.setUsername("Admin");
+        admin.setPassword(passwordEncoder.encode("1234"));
+        admin.setRole("ADMIN");
+
         UserDTO user = new UserDTO();
 
-        user.setUsername("Admin");
+        user.setUsername("User");
+        user.setEmail("user@mail.com");
         user.setPassword(passwordEncoder.encode("1234"));
-        user.setRole("ADMIN");
+        user.setRole("USER");
 
+        userRepository.save(admin);
         userRepository.save(user);
+
     }
 
 }
