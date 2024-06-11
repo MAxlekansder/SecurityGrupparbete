@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.HtmlUtils;
 
 import java.util.Optional;
 
@@ -63,7 +64,7 @@ public class UserService {
         Optional<UserDTO> userOptional = userRepository.findByEmail(email);
         if (userOptional.isPresent()){
             UserDTO user = userOptional.get();
-            user.setPassword(passwordEncoder.encode(password));
+            user.setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(password)));
             userRepository.save(user);
             return true;
         }
