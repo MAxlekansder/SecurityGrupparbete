@@ -5,5 +5,5 @@
     <title>update</title>
 </head>
 
-<p >Your password is now uppdated,  <span th:text="*{user.getUsername()}"></span></p>
+<p th:text="'Password for ' + ${userEmail} + ' is now updated'"></p>
 </html>
