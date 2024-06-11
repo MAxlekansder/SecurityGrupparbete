@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.util.HtmlUtils;
 import org.example.securitygrupparbete.Service.MaskingService;
 
@@ -86,10 +87,11 @@ public class UserController {
 
 
 
-
+    @PutMapping("/updateUser")
     public String deleteUser(Model model) {         // Alexander
         return "user";
     }
+
 
     @GetMapping("/logout")
     public String logoutUser(Model model) {         // Alexander
