@@ -46,13 +46,14 @@ public class UserController {
     
     @PostMapping("/update")
     public String updateUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
-        
         if (result.hasErrors()) {
             return "update";
         }
+        
         boolean success = userService.updatePassword(user.getEmail(), user.getPassword());
+        
         if (success) {
-            return "updateUserSuccessfull";
+            return "updateUserSuccessful";
         } else {
             model.addAttribute("error", "User could not be found");
             return "update";
