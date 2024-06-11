@@ -6,5 +6,10 @@
 </head>
 <body>
 <p >Your user is now saved,  <span th:text="*{user.getUsername()}"></span></p>
+<div>
+    <a th:href="@{/}">
+        <button>Go to Home page</button>
+    </a>
+</div>
 </body>
 </html>

@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.HtmlUtils;
 import org.example.securitygrupparbete.Service.MaskingService;
 
@@ -93,9 +94,10 @@ public class UserController {
 
 
     @PostMapping("/deleteUser")
-    public String deleteUser(Model model) {         // Alexander
+    public String deleteUser(@RequestParam String email,Model model) {         // Alexander
+          model.addAttribute("message", userService.deleteUserByEmail(email) ? "user deleted successfully" : "failed to delete user");
+          return "deletedUser";
 
-        return "user";
     }
     
     
@@ -120,3 +122,14 @@ public class UserController {
     }
     
 }
+
+
+//        låt den va, också sexi kod <3 // Alexander
+//        boolean deletedUser = userService.deleteUserByEmail(email);
+//
+//        if (deletedUser) {
+//            model.addAttribute("message", "user deleted successful");
+//        } else {
+//            model.addAttribute("message", "failed to delete user");
+//        }
+//        return "deletedUser";
