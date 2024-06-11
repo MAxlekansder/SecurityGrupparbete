@@ -1,7 +1,5 @@
-
-2024-06-11 11:35:56 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Starting SecurityGrupparbeteApplication using Java 22.0.1 with PID 93988 (/Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete/target/classes started by oskarjohansson in /Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete)
-2024-06-11 11:35:56 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - No active profile set, falling back to 1 default profile: "default"
-2024-06-11 11:35:58 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Started SecurityGrupparbeteApplication in 1.966 seconds (process running for 2.281)
-2024-06-11 11:36:15 [http-nio-8080-exec-2] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user Admin
-2024-06-11 11:36:19 [http-nio-8080-exec-6] INFO  org.example.securitygrupparbete.Controller.UserController - LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER Admin
-
+2024-06-11 13:38:33 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Starting SecurityGrupparbeteApplication using Java 22.0.1 with PID 15260 (C:\Users\eiser\Dev\Java23\it- och informationssäkerhet\Grupparbete\SecurityGrupparbete\target\classes started by eiser in C:\Users\eiser\Dev\Java23\it- och informationssäkerhet\Grupparbete\SecurityGrupparbete)
+2024-06-11 13:38:33 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-11 13:38:37 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Started SecurityGrupparbeteApplication in 4.608 seconds (process running for 5.084)
+2024-06-11 13:38:48 [http-nio-8080-exec-3] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user Admin
+2024-06-11 13:39:11 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - Saving new user object Username:kalleMasking email: ka***@test.se

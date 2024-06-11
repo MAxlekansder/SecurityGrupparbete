@@ -1,3 +1,1 @@
-
-2024-06-11 11:36:19 [http-nio-8080-exec-6] INFO  org.example.securitygrupparbete.Controller.UserController - LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER Admin
-
+2024-06-11 13:39:11 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - Saving new user object Username:kalleMasking email: ka***@test.se
