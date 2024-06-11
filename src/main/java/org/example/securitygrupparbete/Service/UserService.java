@@ -50,7 +50,7 @@ public class UserService {
         Optional<UserDTO> user = userRepository.findByEmail(email);
 
         if (user.isPresent()) {
-            LOG.info("Deleting user", user.get().getId(),  " ", user.get().getUsername());
+            LOG.info("deleting userid {} with username {}", user.get().getId(), user.get().getUsername());
             userRepository.deleteById(user.get().getId());
 
             return true;
