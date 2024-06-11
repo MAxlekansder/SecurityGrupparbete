@@ -1,12 +1,1 @@
-2024-06-11 14:27:30 [http-nio-8080-exec-6] INFO  org.example.securitygrupparbete.Controller.UserController - inside deleteUser routing deleteUser
-2024-06-11 14:27:37 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - Inside deleteUserResult with params user@email.se
-2024-06-11 14:27:37 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - false
-2024-06-11 14:27:37 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - failed to delete user
-2024-06-11 14:27:49 [http-nio-8080-exec-2] INFO  org.example.securitygrupparbete.Controller.UserController - inside deleteUser routing deleteUser
-2024-06-11 14:27:53 [http-nio-8080-exec-5] INFO  org.example.securitygrupparbete.Controller.UserController - Inside deleteUserResult with params user@email.com
-2024-06-11 14:27:53 [http-nio-8080-exec-5] INFO  org.example.securitygrupparbete.Controller.UserController - false
-2024-06-11 14:27:53 [http-nio-8080-exec-5] INFO  org.example.securitygrupparbete.Controller.UserController - failed to delete user
-2024-06-11 14:28:00 [http-nio-8080-exec-7] INFO  org.example.securitygrupparbete.Controller.UserController - inside deleteUser routing deleteUser
-2024-06-11 14:28:02 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - Inside deleteUserResult with params user@mail.com
-2024-06-11 14:28:02 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - true
-2024-06-11 14:28:02 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - user deleted succe
+2024-06-11 14:34:58 [http-nio-8080-exec-4] INFO  org.example.securitygrupparbete.Controller.UserController - LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER User
