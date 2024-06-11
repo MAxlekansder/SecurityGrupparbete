@@ -24,48 +24,54 @@ public class UserDTO {
         return id;
     }
 
-    public void setId(Long id) {
+    public UserDTO setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public UserDTO setUsername(String username) {
         this.username = username;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public UserDTO setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public UserDTO setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public UserDTO setRole(String role) {
         this.role = role;
+        return this;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public UserDTO setAge(int age) {
         this.age = age;
+        return this;
     }
 
 }
