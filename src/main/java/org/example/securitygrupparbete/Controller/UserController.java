@@ -6,7 +6,6 @@ import org.example.securitygrupparbete.Repository.UserRepository;
 import org.example.securitygrupparbete.Service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +14,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.util.HtmlUtils;
 import org.example.securitygrupparbete.Service.MaskingService;
 
@@ -46,21 +44,17 @@ public class UserController {
     @PostMapping("/update")
     public String updateUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
 
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "update";
         }
-      
 
 
-
-
-
-        return "updateUserSuccessfull";
+        return "updateUserSuccessful";
     }
 
 
     @GetMapping("/register")//Oskar
-    public String register(Model model){
+    public String register(Model model) {
 
         model.addAttribute("user", new UserDTO());
         return "register";
@@ -71,19 +65,21 @@ public class UserController {
     public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
 
 
- if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "register";
         } else {
+
             user.setRole("USER")
                 .setUsername(HtmlUtils.htmlEscape(user.getUsername()))
                 .setEmail(HtmlUtils.htmlEscape(user.getEmail()))
                 .setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(user.getPassword())));
                 userRepository.save(user);
-            LOG.info("Saving new user object" + "Username:" + user.getUsername() + "Masking email: " + MaskingService.maskEmail(user.getEmail()) );
+            LOG.info("Saving new user object " + "Username:" + user.getUsername() + "Masking email: " + MaskingService.maskEmail(user.getEmail()));
 
-            return "saveUserSuccessfull";
+            return "saveUserSuccessful";
         }
     }
+
 
 
 
@@ -93,7 +89,6 @@ public class UserController {
         return "user";
     }
 
-
     @GetMapping("/logout")
     public String logoutUser(Model model) {         // Alexander
 
@@ -101,18 +96,16 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public String presentHomepageForUser(Principal principal) {     // Oskar
+    public String homePage(Principal principal, Model model) {     // Oskar
 
-        if(principal.getName().isBlank()){
+        if(principal == null){
             return"homepage";
         }
 
+        model.addAttribute("user", principal);
+        LOG.info("LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER " + principal.getName());
+
         return "homepage";
     }
 
-    @GetMapping("/homepage")
-    public String homepage(Model model) { // Fredrik
-        LOG.debug("funkar?");
-        return "homepage";
-    }
 }
