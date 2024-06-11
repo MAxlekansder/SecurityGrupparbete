@@ -28,6 +28,7 @@ public class UserService {
         user.setRole("ADMIN");
 
         userRepository.save(user);
+
     }
 
 }

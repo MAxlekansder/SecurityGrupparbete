@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<UserDTO> user = userRepository.findByUsername(username);
-        
+
         if(user.isPresent()){
             var userObj = user.get();
             LOG.info("Logging in user " + userObj.getUsername());
