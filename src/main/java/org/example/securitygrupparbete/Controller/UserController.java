@@ -1,9 +1,8 @@
 package org.example.securitygrupparbete.Controller;
 
 
-import org.example.securitygrupparbete.Model.UserAuthentication;
+import org.example.securitygrupparbete.Model.UserDTO;
 import org.example.securitygrupparbete.Repository.UserRepository;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,13 +35,13 @@ public class UserController {
     @GetMapping("/register")//Oskar
     public String register(Model model){
 
-        model.addAttribute("user", new UserAuthentication());
+        model.addAttribute("user", new UserDTO());
         return "register";
 
     }
 
     @PostMapping("/register")//Oskar
-    public String registerUser(@Validated @ModelAttribute("user") UserAuthentication user, BindingResult bindingResult, Model model) {
+    public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             return "register";

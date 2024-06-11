@@ -1,7 +1,7 @@
 package org.example.securitygrupparbete.Service;
 
 
-import org.example.securitygrupparbete.Model.UserAuthentication;
+import org.example.securitygrupparbete.Model.UserDTO;
 import org.example.securitygrupparbete.Repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserAuthentication> user = userRepository.findByUsername(username);
+        Optional<UserDTO> user = userRepository.findByUsername(username);
 
         if(user.isPresent()){
             var userObj = user.get();

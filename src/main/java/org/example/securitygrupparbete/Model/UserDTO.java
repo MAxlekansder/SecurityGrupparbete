@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 
 
 @Entity
-public class UserAuthentication {
+public class UserDTO {
 
 
     @Id
