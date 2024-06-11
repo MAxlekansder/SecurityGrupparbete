@@ -20,6 +20,8 @@ import org.example.securitygrupparbete.Service.MaskingService;
 
 import java.security.Principal;
 
+import static org.example.securitygrupparbete.Service.MaskingService.maskEmail;
+
 @Controller
 public class UserController {
     
@@ -53,9 +55,12 @@ public class UserController {
         boolean success = userService.updatePassword(user.getEmail(), user.getPassword());
         
         if (success) {
+            model.addAttribute("userEmail", maskEmail(user.getEmail()));
+            LOG.info("User with email: " + maskEmail(user.getEmail()) + "'s has been updated");
             return "updateUserSuccessful";
         } else {
             model.addAttribute("error", "User could not be found");
+            LOG.warn("User with email: " + maskEmail(user.getEmail()) + " could not be found");
             return "update";
         }
         
@@ -72,23 +77,22 @@ public class UserController {
     
     @PostMapping("/register")//Oskar
     public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
-
-
-
+        
         if (bindingResult.hasErrors()) {
             return "register";
+            
         } else {
-
             user.setRole("USER")
-                .setUsername(HtmlUtils.htmlEscape(user.getUsername()))
-                .setEmail(HtmlUtils.htmlEscape(user.getEmail()))
-                .setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(user.getPassword())));
-                userRepository.save(user);
-            LOG.info("Saving new user object " + "Username:" + user.getUsername() + "Masking email: " + MaskingService.maskEmail(user.getEmail()));
-
+                    .setUsername(HtmlUtils.htmlEscape(user.getUsername()))
+                    .setEmail(HtmlUtils.htmlEscape(user.getEmail()))
+                    .setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(user.getPassword())));
+            userRepository.save(user);
+            LOG.info("Saving new user object " + "Username:" + user.getUsername() + "Masking email: " + maskEmail(user.getEmail()));
+            
             return "saveUserSuccessful";
         }
     }
+
 
 
     @GetMapping("/deleteUser")
@@ -115,29 +119,36 @@ public class UserController {
             model.addAttribute("message", "failed to delete user");
         }
         return "deleteUserResult";
-
+        
     }
     
     
     @GetMapping("/logout")
     public String logoutUser(Model model) {         // Alexander
-
         return "logout";
     }
     
     
     @GetMapping("/")
     public String homePage(Principal principal, Model model) {     // Oskar
-
-        if(principal == null){
-            return"homepage";
+        
+        if (principal == null) {
+            return "homepage";
         }
-
+        
         model.addAttribute("user", principal);
         LOG.info("LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER " + principal.getName());
-
+        
         return "homepage";
     }
+    
+    @GetMapping("/admin")
+    public String adminPage(Model model) {
+        return "adminpage";
+    }
+    
+    
+    
     
 }
 

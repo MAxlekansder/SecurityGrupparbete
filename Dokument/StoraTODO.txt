@@ -9,7 +9,7 @@ utloggning                          x
 Registreringssida                   X
 Borttagning av användare            x
 Delete-controller
-Update-controller (uppdatera lösenord)
+Update-controller (uppdatera lösenord) X
 Skapa en preset av användare, ladda in USER, ADMIN (repository.save(preset))                x
 DTO-objekt, validering av email och lösenord. (@Validate param)                             x
 PasswordEncoder encode -> hash lösenordet                                                   x
@@ -20,12 +20,16 @@ Skapa upp admin i UserService som statisk loader                                
 Thymeleaf - HTML
 Logout - ”ska stå utloggad och sen routa till inloggning”                                   x
 Register - ”csrf-skydd”
+<<<<<<< Updated upstream
  / home- root ”ska stå att man är inloggad”                                                 x
+=======
+ / home- root ”ska stå att man är inloggad” x
+>>>>>>> Stashed changes
 Admin-page
 Delete - ”csrf-skydd”, ta in epostadressen
 register_success, visa när användaren är registrerad                                        x
 error_page - defualtFailureURL
-update_success, ska visas när vi har uppdaterat allt korrekt
+update_success, ska visas när vi har uppdaterat allt korrekt    x
 
 Static  - Oskar
 404 - täcker när användaren inte hittas                                                     x
@@ -62,7 +66,12 @@ bara för att säkerställa. Fråga Håkan om Model går lika bra som DTO
 
 
 
+<<<<<<< Updated upstream
 Uppdatering - Fredrik
+=======
+Uppdatering - Fredrik X
+Registrering - Oskar x
+>>>>>>> Stashed changes
 Ta bort - Alexander
 
 Loggning - konfigfilen tillsammans
