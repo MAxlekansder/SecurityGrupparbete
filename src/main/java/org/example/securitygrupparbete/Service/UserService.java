@@ -33,21 +33,6 @@ public class UserService {
     }
     
     
-    // TODO: 2024-06-11 ta bort
-    @PostConstruct
-    private void saveRegUser(){
-        UserDTO user = new UserDTO();
-        
-        user.setUsername("User");
-        user.setEmail("kalle@test.com");
-        user.setPassword(passwordEncoder.encode("1234"));
-        user.setRole("USER");
-        
-        userRepository.save(user);
-    }
-    
-    
-    
     
     public boolean updatePassword(String email, String password) {
         Optional<UserDTO> userOptional = userRepository.findByEmail(email);

@@ -6,7 +6,6 @@ import org.example.securitygrupparbete.Repository.UserRepository;
 import org.example.securitygrupparbete.Service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,13 +57,11 @@ public class UserController {
             return "update";
         }
         
-        
     }
     
     
     @GetMapping("/register")//Oskar
     public String register(Model model) {
-        
         model.addAttribute("user", new UserDTO());
         return "register";
         
@@ -73,50 +70,52 @@ public class UserController {
     
     @PostMapping("/register")//Oskar
     public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
-        
-        
+
+
+
         if (bindingResult.hasErrors()) {
             return "register";
         } else {
-            user.setRole("USER");
-            user.setUsername(HtmlUtils.htmlEscape(user.getUsername()));
-            user.setEmail(HtmlUtils.htmlEscape(user.getEmail()));
-            user.setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(user.getPassword())));
-            userRepository.save(user);
-            LOG.info("Saving new user object" + "Username:" + user.getUsername() + "Masking email: " + MaskingService.maskEmail(user.getEmail()));
-            
-            return "saveUserSuccessfull";
+
+            user.setRole("USER")
+                .setUsername(HtmlUtils.htmlEscape(user.getUsername()))
+                .setEmail(HtmlUtils.htmlEscape(user.getEmail()))
+                .setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(user.getPassword())));
+                userRepository.save(user);
+            LOG.info("Saving new user object " + "Username:" + user.getUsername() + "Masking email: " + MaskingService.maskEmail(user.getEmail()));
+
+            return "saveUserSuccessful";
         }
     }
-    
-    
+
+
+
+
+    @PostMapping("/deleteUser")
     public String deleteUser(Model model) {         // Alexander
+
         return "user";
     }
     
     
     @GetMapping("/logout")
     public String logoutUser(Model model) {         // Alexander
+
         return "logout";
     }
     
     
     @GetMapping("/")
-    public String presentHomepageForUser(Principal principal) {     // Oskar
-        
-        if (principal.getName().isBlank()) {
-            return "homepage";
+    public String homePage(Principal principal, Model model) {     // Oskar
+
+        if(principal == null){
+            return"homepage";
         }
-        
+
+        model.addAttribute("user", principal);
+        LOG.info("LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER " + principal.getName());
+
         return "homepage";
     }
-    
-    
-    @GetMapping("/homepage")
-    public String homepage(Model model) { // Fredrik
-        LOG.debug("funkar?");
-        return "homepage";
-    }
-    
     
 }

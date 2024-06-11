@@ -9,9 +9,10 @@
 <body>
 <div class="container">
     <div class="welcome">
-        <h1 th:text="'Welcome, ' + ${#authentication.name} + '!'"></h1>
-        <p th:if="${#authentication.name}">You are logged in as <span th:text="${#authentication.name}"></span></p>
-        <p th:if="${not #authentication.name}">You are not logged in.</p>
+        <h1 th:if="${user != null}" th:text="'Welcome, ' + ${user.getName()} + '!'">Welcome!</h1>
+        <h1 th:if="${user == null}">Welcome!</h1>
+        <p th:if="${user != null}">You are logged in as <span th:text="${user.getName()}"></span></p>
+        <p th:if="${user == null}">You are not logged in.</p>
     </div>
 </div>
 </body>

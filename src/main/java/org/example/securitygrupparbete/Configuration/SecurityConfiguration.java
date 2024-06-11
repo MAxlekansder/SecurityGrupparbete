@@ -6,6 +6,8 @@ package org.example.securitygrupparbete.Configuration;
  */
 
 import org.example.securitygrupparbete.Service.UserDetailsServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,6 +27,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
+    private static final Logger LOG = LoggerFactory.getLogger(SecurityConfiguration.class);
+
     @Bean
     public AuthenticationManager authenticationManager(UserDetailsServiceImpl userDetailsService) {
         var provider = new DaoAuthenticationProvider();
@@ -39,8 +43,8 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(autRequest ->
                         autRequest
-                                .requestMatchers("/homepage").permitAll()
                                 .requestMatchers("/", "/register").permitAll()
+                                .requestMatchers("/adminpage", "/update").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
@@ -56,13 +60,21 @@ public class SecurityConfiguration {
                                 .deleteCookies("JSESSIONID")
                                 .permitAll()
                 )
+                .headers(headers ->
+                        headers
+                                .contentSecurityPolicy(policy -> // stoppar XSS-attacker och scripts utifrån
+                                        policy
+                                                .policyDirectives("script-src 'self'")
+
+                                )
+                )
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(12);
     }
 
 
