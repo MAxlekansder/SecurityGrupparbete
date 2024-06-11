@@ -30,9 +30,15 @@ public class UserService {
         user.setRole("ADMIN");
 
         userRepository.save(user);
+
     }
-    
-    
+
+
+    public boolean deleteUserByEmail() {
+        
+    }
+
+   
     
     public boolean updatePassword(String email, String password) {
         Optional<UserDTO> userOptional = userRepository.findByEmail(email);
@@ -47,4 +53,5 @@ public class UserService {
     }
     
     
+
 }

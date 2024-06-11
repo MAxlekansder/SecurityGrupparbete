@@ -65,7 +65,6 @@ public class SecurityConfiguration {
                                 .contentSecurityPolicy(policy -> // stoppar XSS-attacker och scripts utifrån
                                         policy
                                                 .policyDirectives("script-src 'self'")
-
                                 )
                 )
                 .httpBasic(Customizer.withDefaults())
