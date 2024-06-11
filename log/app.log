@@ -1,7 +1,19 @@
 
-2024-06-11 13:09:29 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Starting SecurityGrupparbeteApplication using Java 22.0.1 with PID 12618 (/Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete/target/classes started by oskarjohansson in /Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete)
-2024-06-11 13:09:29 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - No active profile set, falling back to 1 default profile: "default"
-2024-06-11 13:09:30 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Started SecurityGrupparbeteApplication in 2.024 seconds (process running for 2.37)
-2024-06-11 13:14:34 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user Admin
-2024-06-11 13:15:00 [http-nio-8080-exec-4] INFO  org.example.securitygrupparbete.Controller.UserController - LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER Admin
-2024-06-11 13:15:03 [http-nio-8080-exec-6] INFO  org.example.securitygrupparbete.Controller.UserController - LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER Admin
+2024-06-11 14:27:22 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Starting SecurityGrupparbeteApplication using Java 22.0.1 with PID 75205 (/Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete/target/classes started by alexanderhasslund in /Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete)
+2024-06-11 14:27:22 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-11 14:27:25 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Started SecurityGrupparbeteApplication in 2.403 seconds (process running for 2.804)
+2024-06-11 14:27:30 [http-nio-8080-exec-5] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user Admin
+2024-06-11 14:27:30 [http-nio-8080-exec-6] INFO  org.example.securitygrupparbete.Controller.UserController - inside deleteUser routing deleteUser
+2024-06-11 14:27:37 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - Inside deleteUserResult with params user@email.se
+2024-06-11 14:27:37 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - false
+2024-06-11 14:27:37 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - failed to delete user
+2024-06-11 14:27:49 [http-nio-8080-exec-2] INFO  org.example.securitygrupparbete.Controller.UserController - inside deleteUser routing deleteUser
+2024-06-11 14:27:53 [http-nio-8080-exec-5] INFO  org.example.securitygrupparbete.Controller.UserController - Inside deleteUserResult with params user@email.com
+2024-06-11 14:27:53 [http-nio-8080-exec-5] INFO  org.example.securitygrupparbete.Controller.UserController - false
+2024-06-11 14:27:53 [http-nio-8080-exec-5] INFO  org.example.securitygrupparbete.Controller.UserController - failed to delete user
+2024-06-11 14:28:00 [http-nio-8080-exec-7] INFO  org.example.securitygrupparbete.Controller.UserController - inside deleteUser routing deleteUser
+2024-06-11 14:28:02 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - Inside deleteUserResult with params user@mail.com
+2024-06-11 14:28:02 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - true
+2024-06-11 14:28:02 [http-nio-8080-exec-9] INFO  org.example.securitygrupparbete.Controller.UserController - user deleted succe
+
+

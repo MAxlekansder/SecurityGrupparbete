@@ -7,7 +7,7 @@ Använd er av /* 	*/
 Inlogging                           x
 utloggning                          x
 Registreringssida                   X
-Borttagning av användare
+Borttagning av användare            x
 Delete-controller
 Update-controller (uppdatera lösenord)
 Skapa en preset av användare, ladda in USER, ADMIN (repository.save(preset))                x
@@ -42,7 +42,7 @@ Konfigfil
 Behörigheter - SecurityFilterChain // alexander
 Förstasidan - ”alla får se men ska vara autentiserad, inkludera en utloggningsknapp”            x
 Register - endast admin får registrera nya användare, ny användare får USER                     x
-Delete - endast admin får deleta en user
+Delete - endast admin får deleta en user (thymeleaf /deleteUser som tar in parameter -> visa OK)
 HTMLUtils - för att tvätta datat (controller)                                                   x
 
 Testing

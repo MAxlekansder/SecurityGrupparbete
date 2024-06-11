@@ -91,12 +91,30 @@ public class UserController {
     }
 
 
+    @GetMapping("/deleteUser")
+    public String deleteUserForm() {
+        LOG.info("inside deleteUser routing deleteUser");
+        return "deleteUser";
+    }
 
 
-    @PostMapping("/deleteUser")
+    @PostMapping("/deleteUserResult")
     public String deleteUser(@RequestParam String email,Model model) {         // Alexander
-          model.addAttribute("message", userService.deleteUserByEmail(email) ? "user deleted successfully" : "failed to delete user");
-          return "deletedUser";
+        LOG.info("Inside deleteUserResult with params " + email);
+        //  model.addAttribute("message", userService.deleteUserByEmail(email) ? "user deleted successfully" : "failed to delete user");
+        //  return "deletedUser";
+
+        boolean deletedUser = userService.deleteUserByEmail(email);
+        LOG.info(String.valueOf(deletedUser));
+
+        if (deletedUser) {
+            LOG.info("user deleted succe");
+            model.addAttribute("message", "user deleted successful");
+        } else {
+            LOG.info("failed to delete user");
+            model.addAttribute("message", "failed to delete user");
+        }
+        return "deleteUserResult";
 
     }
     
