@@ -21,48 +21,56 @@ import java.security.Principal;
 
 @Controller
 public class UserController {
-
+    
     private final static Logger LOG = LoggerFactory.getLogger(UserController.class);
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final UserService userService;
-
-
+    
+    
     public UserController(PasswordEncoder passwordEncoder, UserRepository userRepository, UserService userService) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.userService = userService;
-
+        
     }
-
+    
+    
     @GetMapping("/update")
     public String getUpdate(Model model) {
         model.addAttribute("user", new UserDTO());
         return "update";
     }
-
+    
+    
     @PostMapping("/update")
     public String updateUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
-
+        
         if (result.hasErrors()) {
             return "update";
         }
-
-
-        return "updateUserSuccessful";
+        boolean success = userService.updatePassword(user.getEmail(), user.getPassword());
+        if (success) {
+            return "updateUserSuccessfull";
+        } else {
+            model.addAttribute("error", "User could not be found");
+            return "update";
+        }
+        
     }
-
-
+    
+    
     @GetMapping("/register")//Oskar
     public String register(Model model) {
-
         model.addAttribute("user", new UserDTO());
         return "register";
-
+        
     }
-
+    
+    
     @PostMapping("/register")//Oskar
     public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
+
 
 
         if (bindingResult.hasErrors()) {
@@ -88,13 +96,15 @@ public class UserController {
 
         return "user";
     }
-
+    
+    
     @GetMapping("/logout")
     public String logoutUser(Model model) {         // Alexander
 
         return "logout";
     }
-
+    
+    
     @GetMapping("/")
     public String homePage(Principal principal, Model model) {     // Oskar
 
@@ -107,5 +117,5 @@ public class UserController {
 
         return "homepage";
     }
-
+    
 }

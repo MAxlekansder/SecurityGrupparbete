@@ -7,6 +7,8 @@ import org.example.securitygrupparbete.Repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -32,8 +34,24 @@ public class UserService {
     }
 
 
-
     public boolean deleteUserByEmail() {
         
     }
+
+   
+    
+    public boolean updatePassword(String email, String password) {
+        Optional<UserDTO> userOptional = userRepository.findByEmail(email);
+        if (userOptional.isPresent()){
+            UserDTO user = userOptional.get();
+            user.setPassword(passwordEncoder.encode(password));
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+        
+    }
+    
+    
+
 }
