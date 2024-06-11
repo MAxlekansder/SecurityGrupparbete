@@ -26,22 +26,20 @@ public class UserService {
     private void saveAdminUser(){ // Oskar
         UserDTO admin = new UserDTO();
 
-        admin.setUsername("Admin");
-        admin.setPassword(passwordEncoder.encode("1234"));
-        admin.setRole("ADMIN");
+        admin.setUsername("Admin")
+                .setPassword(passwordEncoder.encode("1234"))
+                .setRole("ADMIN");
 
         UserDTO user = new UserDTO();
 
-        user.setUsername("User");
-        user.setEmail("user@mail.com");
-        user.setPassword(passwordEncoder.encode("1234"));
-        user.setRole("USER");
+        user.setUsername("User")
+                .setEmail("user@mail.com")
+                .setPassword(passwordEncoder.encode("1234"))
+                .setRole("USER");
 
         userRepository.save(admin);
         userRepository.save(user);
-
     }
-
 
     public boolean deleteUserByEmail(String email) {
         Optional<UserDTO> user = userRepository.findByEmail(email);
@@ -53,7 +51,6 @@ public class UserService {
         throw new UsernameNotFoundException("No user found");
     }
 
-   
     
     public boolean updatePassword(String email, String password) {
         Optional<UserDTO> userOptional = userRepository.findByEmail(email);
@@ -66,7 +63,6 @@ public class UserService {
         return false;
         
     }
-    
     
 
 }

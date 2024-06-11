@@ -59,8 +59,7 @@ public class UserController {
         }
         
     }
-    
-    
+
     @GetMapping("/register")//Oskar
     public String register(Model model) {
         model.addAttribute("user", new UserDTO());
@@ -71,8 +70,6 @@ public class UserController {
     
     @PostMapping("/register")//Oskar
     public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
-
-
 
         if (bindingResult.hasErrors()) {
             return "register";
