@@ -1,1 +1,1 @@
-2024-06-11 10:44:53 [http-nio-8080-exec-1] DEBUG org.example.securitygrupparbete.Controller.UserController - funkar?
+2024-06-11 11:36:19 [http-nio-8080-exec-6] INFO  org.example.securitygrupparbete.Controller.UserController - LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER Admin
