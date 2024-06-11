@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>result</title>
+</head>
+<div class="container">
+    <h1>User Deletion Result</h1>
+    <p th:text="${message}" th:classappend="${message.contains('successfully') ? 'success' : 'error'}"></p>
+    <a href="/deleteUser" class="btn btn-primary">Back to Delete User</a>
+</div>
+</html>

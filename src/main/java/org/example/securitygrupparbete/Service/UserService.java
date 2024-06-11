@@ -22,20 +22,20 @@ public class UserService {
     }
 
 
-    @PostConstruct //Alex
+    @PostConstruct // Alexander
     private void saveAdminUser(){ // Oskar
         UserDTO admin = new UserDTO();
 
-        admin.setUsername("Admin");
-        admin.setPassword(passwordEncoder.encode("1234"));
-        admin.setRole("ADMIN");
+        admin.setUsername("Admin")
+            .setPassword(passwordEncoder.encode("1234"))
+            .setRole("ADMIN");
 
         UserDTO user = new UserDTO();
 
-        user.setUsername("User");
-        user.setEmail("user@mail.com");
-        user.setPassword(passwordEncoder.encode("1234"));
-        user.setRole("USER");
+        user.setUsername("User")
+            .setEmail("user@mail.com")
+            .setPassword(passwordEncoder.encode("1234"))
+            .setRole("USER");
 
         userRepository.save(admin);
         userRepository.save(user);
@@ -50,7 +50,7 @@ public class UserService {
             userRepository.deleteById(user.get().getId());
             return true;
         }
-        throw new UsernameNotFoundException("No user found");
+        return false;
     }
 
    
