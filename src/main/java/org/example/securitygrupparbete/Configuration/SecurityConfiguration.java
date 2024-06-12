@@ -1,9 +1,21 @@
 package org.example.securitygrupparbete.Configuration;
 
-/*
+/******************
+
+csrf-tokenvalidering
+
+förhindra XSS-attacker
+
+Authorize specifika get-requests där användaren når
+
+authorize specifika protokollrequests direkt mot metoderna som t ex POST / PUT / DELETE
+    Detta är bara för att säkerställa
+
+logout -> radera nödvändiga cookies och olika sessionsids för att rensa sessionen och
+generera nya och unika för varje gång användaren loggar in
 
 
- */
+ *******************/
 
 import org.example.securitygrupparbete.Service.UserDetailsServiceImpl;
 import org.slf4j.Logger;
@@ -80,7 +92,7 @@ public class SecurityConfiguration {
                                                 .policyDirectives("script-src 'self'")
                                 )
                 )
-                .httpBasic(Customizer.withDefaults())
+               // .httpBasic(Customizer.withDefaults())
                 .build();
     }
 
