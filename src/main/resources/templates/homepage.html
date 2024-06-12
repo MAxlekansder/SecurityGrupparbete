@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 <div class="container">
     <div class="welcome">
-        <h1 th:if="${user != null}" th:text="'Welcome, ' + ${user.getName()} + '!'">Welcome!</h1>
+        <div><h1 th:if="${user != null}" th:text="'Welcome, ' + ${user.getName()} + '!'">Welcome!</h1>
+            <p th:if="${user != null}">You are logged in as <span th:text="${user.getName()}"></span></p>
+
+            <a th:if="${user != null}" th:href="@{/logout}">
+                <button>Log out</button>
+            </a>
+        </div>
+
         <h1 th:if="${user == null}">Welcome!</h1>
-        <p th:if="${user != null}">You are logged in as <span th:text="${user.getName()}"></span></p>
         <p th:if="${user == null}">You are not logged in.</p>
     </div>
-    <div>
-        <a th:href="@{/logout}">
-            <button>Log out</button>
-        </a>
-    </div>
+
 
 </div>
 </body>
