@@ -1,7 +1,10 @@
 package org.example.securitygrupparbete.DTO;
 
+
+
 public class UserDTO {
-    
+
+
     private Long id;
     private String username;
     private String password;
