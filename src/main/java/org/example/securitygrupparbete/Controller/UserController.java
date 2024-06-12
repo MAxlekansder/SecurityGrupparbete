@@ -1,6 +1,7 @@
 package org.example.securitygrupparbete.Controller;
 
 
+import org.example.securitygrupparbete.DTO.UserDTO;
 import org.example.securitygrupparbete.Model.UserModel;
 import org.example.securitygrupparbete.Repository.UserRepository;
 import org.example.securitygrupparbete.Service.UserService;
@@ -41,14 +42,14 @@ public class UserController {
     
     @GetMapping("/update")
     public String getUpdate(Model model) {
-        model.addAttribute("user", new UserModel());
+        model.addAttribute("user", new UserDTO());
         return "update";
     }
     
     
     // TODO: 2024-06-12 finish 
     @PostMapping("/update")
-    public String updateUser(@Validated @ModelAttribute("user") UserModel user, BindingResult result, Model model) {
+    public String updateUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "update";
         }
@@ -58,9 +59,9 @@ public class UserController {
         try {
             success = userService.updatePassword(user.getEmail(), user.getPassword());
         } catch (UsernameNotFoundException e) {
-            model.addAttribute("error", "User could not be found");
             LOG.warn("User with email: " + maskEmail(user.getEmail()) + " could not be found");
-            return "update";
+            LOG.warn(Arrays.toString(e.getStackTrace()));
+            
         }
         
         if (success) {
