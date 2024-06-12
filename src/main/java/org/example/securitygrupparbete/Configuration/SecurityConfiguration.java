@@ -48,13 +48,16 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(autRequest ->
                         autRequest
                                 .requestMatchers("/").authenticated()
-                                .requestMatchers( "/adminpage"
+                              //  .requestMatchers("/logout").authenticated() verkar som att spring overridar säkerheten oavsett
+                                .requestMatchers( "/admin"
                                                     , "/update"
                                                     , "/deleteUser"
                                                     , "/deleteUserResult"
                                                     , "/register")
                                 .hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.DELETE, "/admin").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST).hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.PUT).hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
@@ -64,7 +67,7 @@ public class SecurityConfiguration {
                 )
                 .logout(logout ->
                         logout
-                              //  .logoutUrl("/logout")
+                                .logoutUrl("/logout")
                                 .logoutSuccessUrl("/logoutSuccess")
                                 .invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID", "XSRF-TOKEN")

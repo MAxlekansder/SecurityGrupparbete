@@ -120,8 +120,8 @@ public class UserController {
     }
 
         
-    @GetMapping("/logoutSuccess")                                       // redan clearat allt här, principal redan borta
-    public String logoutUser(Model model, Principal principal) {           // Alexander
+    @GetMapping("/logoutSuccess")                                         // Alexander
+    public String logoutUser(Model model) {            // redan clearat allt här, principal redan borta
         model.addAttribute("message", "you've been logged out, redirecting to log in...");
         return "logoutSuccess";
     }
