@@ -8,7 +8,7 @@
 <h1>Uppdatera användare</h1>
 <form th:object="${user}" method="post">
     <label for="email">E-post:</label>
-    <input type="text" id="email" th:field="*{email}"/>
+    <input type="email" id="email" th:field="*{email}"/>
     <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 
     <label for="password">Nytt lösenord:</label>
