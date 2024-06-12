@@ -48,7 +48,7 @@ public class SecurityConfiguration {
                 )
                 .authorizeHttpRequests(autRequest ->
                         autRequest
-                                .requestMatchers("/").permitAll()
+                                .requestMatchers("/").authenticated()
                                 .requestMatchers( "/adminpage"
                                                     , "/update"
                                                     , "/deleteUser"
@@ -65,16 +65,16 @@ public class SecurityConfiguration {
                 )
                 .logout(logout ->
                         logout
-                                .logoutUrl("/logout")
-                                .logoutSuccessUrl("/login?logout=true")
+                              //  .logoutUrl("/logout")
+                                .logoutSuccessUrl("/logoutSuccess")
                                 .invalidateHttpSession(true)
-                                .deleteCookies("JSESSIONID")
+                                .deleteCookies("JSESSIONID", "XSRF-TOKEN")
                                 .permitAll()
                 )
                 .headers(headers ->
                         headers
-                                .contentSecurityPolicy(policy -> // stoppar XSS-attacker och scripts utifrån
-                                        policy
+                                .contentSecurityPolicy(policy ->    // stoppar XSS-attacker och scripts utifrån med 'self'
+                                        policy                      // vi kan tillåta betrodda sidor, genom att inkludera dem
                                                 .policyDirectives("script-src 'self'")
                                 )
                 )
