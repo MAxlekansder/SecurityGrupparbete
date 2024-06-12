@@ -35,7 +35,6 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.userService = userService;
-        
     }
     
     
@@ -121,8 +120,7 @@ public class UserController {
         return "deleteUserResult";
         
     }
-    
-    
+
     @GetMapping("/logout")
     public String logoutUser(Model model) {         // Alexander
         return "logout";
