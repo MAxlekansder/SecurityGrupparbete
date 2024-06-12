@@ -41,10 +41,9 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrfCustomizer ->         // stoppar scripts från att sno cookien (withHttpOnlyFalse)
-                        csrfCustomizer          // nödvändig eftersom vi skickar forms från clientsidan till servern
+                .csrf(csrfCustomizer ->                      // stoppar scripts från att sno cookien (withHttpOnlyFalse)
+                        csrfCustomizer                       // nödvändig eftersom vi skickar forms från clientsidan till servern
                                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-
                 )
                 .authorizeHttpRequests(autRequest ->
                         autRequest
@@ -74,7 +73,7 @@ public class SecurityConfiguration {
                 .headers(headers ->
                         headers
                                 .contentSecurityPolicy(policy ->    // stoppar XSS-attacker och scripts utifrån med 'self'
-                                        policy                      // vi kan tillåta betrodda sidor, genom att inkludera dem
+                                        policy                      // vi kan tillåta betrodda sidor, genom att inkludera dem i policyDirectives
                                                 .policyDirectives("script-src 'self'")
                                 )
                 )

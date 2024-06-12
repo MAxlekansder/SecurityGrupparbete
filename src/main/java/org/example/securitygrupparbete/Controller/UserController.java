@@ -95,7 +95,6 @@ public class UserController {
 
     @GetMapping("/deleteUser")
     public String deleteUserForm() {
-        LOG.info("inside deleteUser routing deleteUser");
         return "deleteUser";
     }
 
@@ -110,10 +109,10 @@ public class UserController {
         LOG.info(String.valueOf(deletedUser));
 
         if (deletedUser) {
-            LOG.info("user deleted succe");
+            LOG.info("user deleted successful");
             model.addAttribute("message", "user deleted successful");
         } else {
-            LOG.info("failed to delete user");
+            LOG.error("failed to delete user");
             model.addAttribute("message", "failed to delete user");
         }
         return "deleteUserResult";
@@ -121,15 +120,10 @@ public class UserController {
     }
 
         
-    @GetMapping("/logoutSuccess")
-    public String logoutUser(Model model, Principal principal) {        // Alexander
-        if (principal == null) {
-            model.addAttribute("message", "you're not logged in to start with");
-        } else {
-            model.addAttribute("message", "you've been logged out successfully, redirectin to log in...");
-        }
+    @GetMapping("/logoutSuccess")                                       // redan clearat allt här, principal redan borta
+    public String logoutUser(Model model, Principal principal) {           // Alexander
+        model.addAttribute("message", "you've been logged out, redirecting to log in...");
         return "logoutSuccess";
-
     }
     
     
