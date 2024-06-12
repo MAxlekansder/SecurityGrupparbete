@@ -47,6 +47,7 @@ public class SecurityConfiguration {
         var provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
+        LOG.warn("New provider in Auth Manager created", provider);
         return new ProviderManager(provider);
     }
 
