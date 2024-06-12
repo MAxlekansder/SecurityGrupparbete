@@ -1,7 +1,2 @@
-2024-06-12 10:08:08 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Starting SecurityGrupparbeteApplication using Java 22.0.1 with PID 71808 (/Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete/target/classes started by oskarjohansson in /Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete)
-2024-06-12 10:08:08 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - No active profile set, falling back to 1 default profile: "default"
-2024-06-12 10:08:10 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Started SecurityGrupparbeteApplication in 2.529 seconds (process running for 2.943)
-2024-06-12 10:08:14 [http-nio-8080-exec-2] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user Admin
-2024-06-12 10:08:15 [http-nio-8080-exec-3] INFO  org.example.securitygrupparbete.Controller.UserController - LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER Admin
-2024-06-12 10:08:20 [http-nio-8080-exec-6] INFO  org.example.securitygrupparbete.Controller.UserController - LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER Admin
-2024-06-12 10:08:33 [http-nio-8080-exec-2] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user Admin
+2024-06-12 10:16:46 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerSliceTest - Starting UserControllerSliceTest using Java 22.0.1 with PID 75864 (started by oskarjohansson in /Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete)
+2024-06-12 10:16:46 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerSliceTest - No active profile set, falling back to 1 default profile: "default"
