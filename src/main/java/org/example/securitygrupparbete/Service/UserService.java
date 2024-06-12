@@ -6,6 +6,7 @@ import org.example.securitygrupparbete.Model.UserModel;
 import org.example.securitygrupparbete.Repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
@@ -55,7 +56,7 @@ public class UserService {
 
             return true;
         }
-        return false;
+        throw new UsernameNotFoundException("User with email " + MaskingService.maskEmail(email) + " was not found");
     }
 
    
@@ -68,7 +69,8 @@ public class UserService {
             userRepository.save(user);
             return true;
         }
-        return false;
+        throw new UsernameNotFoundException("User with email " + MaskingService.maskEmail(email) + " was not found");
+        
         
     }
     
