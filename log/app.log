@@ -1,3 +1,0 @@
-2024-06-12 12:17:07 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerSliceTest - Starting UserControllerSliceTest using Java 22.0.1 with PID 31978 (started by oskarjohansson in /Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete)
-2024-06-12 12:17:07 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerSliceTest - No active profile set, falling back to 1 default profile: "default"
-2024-06-12 12:17:09 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerSliceTest - Started UserControllerSliceTest in 2.405 seconds (process running for 2.973)

@@ -1,9 +1,21 @@
 package org.example.securitygrupparbete.Configuration;
 
-/*
+/******************
+
+csrf-tokenvalidering
+
+förhindra XSS-attacker
+
+Authorize specifika get-requests där användaren når
+
+authorize specifika protokollrequests direkt mot metoderna som t ex POST / PUT / DELETE
+    Detta är bara för att säkerställa
+
+logout -> radera nödvändiga cookies och olika sessionsids för att rensa sessionen och
+generera nya och unika för varje gång användaren loggar in
 
 
- */
+ *******************/
 
 import org.example.securitygrupparbete.Service.UserDetailsServiceImpl;
 import org.slf4j.Logger;
@@ -41,21 +53,23 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrfCustomizer ->         // stoppar scripts från att sno cookien (withHttpOnlyFalse)
-                        csrfCustomizer          // nödvändig eftersom vi skickar forms från clientsidan till servern
+                .csrf(csrfCustomizer ->                      // stoppar scripts från att sno cookien (withHttpOnlyFalse)
+                        csrfCustomizer                       // nödvändig eftersom vi skickar forms från clientsidan till servern
                                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-
                 )
                 .authorizeHttpRequests(autRequest ->
                         autRequest
                                 .requestMatchers("/").authenticated()
-                                .requestMatchers( "/adminpage"
+                              //  .requestMatchers("/logout").authenticated() verkar som att spring overridar säkerheten oavsett
+                                .requestMatchers( "/admin"
                                                     , "/update"
                                                     , "/deleteUser"
                                                     , "/deleteUserResult"
                                                     , "/register")
                                 .hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.DELETE, "/admin").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST).hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.PUT).hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
@@ -65,7 +79,7 @@ public class SecurityConfiguration {
                 )
                 .logout(logout ->
                         logout
-                              //  .logoutUrl("/logout")
+                                .logoutUrl("/logout")
                                 .logoutSuccessUrl("/logoutSuccess")
                                 .invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID", "XSRF-TOKEN")
@@ -74,7 +88,7 @@ public class SecurityConfiguration {
                 .headers(headers ->
                         headers
                                 .contentSecurityPolicy(policy ->    // stoppar XSS-attacker och scripts utifrån med 'self'
-                                        policy                      // vi kan tillåta betrodda sidor, genom att inkludera dem
+                                        policy                      // vi kan tillåta betrodda sidor, genom att inkludera dem i policyDirectives
                                                 .policyDirectives("script-src 'self'")
                                 )
                 )
