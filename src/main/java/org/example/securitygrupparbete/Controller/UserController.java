@@ -1,7 +1,7 @@
 package org.example.securitygrupparbete.Controller;
 
 
-import org.example.securitygrupparbete.Model.UserDTO;
+import org.example.securitygrupparbete.Model.UserModel;
 import org.example.securitygrupparbete.Repository.UserRepository;
 import org.example.securitygrupparbete.Service.UserService;
 import org.slf4j.Logger;
@@ -39,13 +39,13 @@ public class UserController {
     
     @GetMapping("/update")
     public String getUpdate(Model model) {
-        model.addAttribute("user", new UserDTO());
+        model.addAttribute("user", new UserModel());
         return "update";
     }
     
     
     @PostMapping("/update")
-    public String updateUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
+    public String updateUser(@Validated @ModelAttribute("user") UserModel user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "update";
         }
@@ -67,14 +67,14 @@ public class UserController {
     
     @GetMapping("/register")//Oskar
     public String register(Model model) {
-        model.addAttribute("user", new UserDTO());
+        model.addAttribute("user", new UserModel());
         return "register";
         
     }
     
     
     @PostMapping("/register")//Oskar
-    public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
+    public String registerUser(@Validated @ModelAttribute("user") UserModel user, BindingResult bindingResult, Model model) {
         
         if (bindingResult.hasErrors()) {
             return "register";
