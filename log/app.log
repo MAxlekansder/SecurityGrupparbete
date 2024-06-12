@@ -1,2 +1,5 @@
-2024-06-12 10:16:46 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerSliceTest - Starting UserControllerSliceTest using Java 22.0.1 with PID 75864 (started by oskarjohansson in /Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete)
-2024-06-12 10:16:46 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerSliceTest - No active profile set, falling back to 1 default profile: "default"
+2024-06-12 10:35:55 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerSliceTest - Starting UserControllerSliceTest using Java 22.0.1 with PID 85109 (started by oskarjohansson in /Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete)
+2024-06-12 10:35:55 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerSliceTest - No active profile set, falling back to 1 default profile: "default"
+2024-06-12 10:35:56 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerSliceTest - Started UserControllerSliceTest in 1.247 seconds (process running for 1.786)
+2024-06-12 10:35:56 [main] INFO  org.example.securitygrupparbete.Controller.UserController - LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER Admin
+2024-06-12 10:35:56 [main] INFO  org.example.securitygrupparbete.Controller.UserController - LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER Admin
