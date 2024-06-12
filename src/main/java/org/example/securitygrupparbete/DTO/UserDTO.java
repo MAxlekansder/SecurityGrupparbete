@@ -1,11 +1,22 @@
 package org.example.securitygrupparbete.DTO;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class UserDTO {
     
     private Long id;
+    
+    @NotBlank
     private String username;
+    
+    @NotBlank
     private String password;
+    
+    @NotBlank
+    @Email(message = "Email should be valid", regexp = "^[\\w.-]+@[a-zA-Z\\d.-]+\\.[a-zA-Z]{2,}$")
     private String email;
+    
     private String role;
     private String firstName;
     private String lastName;
