@@ -1,7 +1,7 @@
 package org.example.securitygrupparbete.Controller;
 
 
-import org.example.securitygrupparbete.Model.UserDTO;
+import org.example.securitygrupparbete.Model.UserModel;
 import org.example.securitygrupparbete.Repository.UserRepository;
 import org.example.securitygrupparbete.Service.UserService;
 import org.slf4j.Logger;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.HtmlUtils;
-import org.example.securitygrupparbete.Service.MaskingService;
 
 import java.security.Principal;
 
@@ -40,13 +39,13 @@ public class UserController {
     
     @GetMapping("/update")
     public String getUpdate(Model model) {
-        model.addAttribute("user", new UserDTO());
+        model.addAttribute("user", new UserModel());
         return "update";
     }
     
     
     @PostMapping("/update")
-    public String updateUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
+    public String updateUser(@Validated @ModelAttribute("user") UserModel user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "update";
         }
@@ -68,14 +67,14 @@ public class UserController {
     
     @GetMapping("/register")//Oskar
     public String register(Model model) {
-        model.addAttribute("user", new UserDTO());
+        model.addAttribute("user", new UserModel());
         return "register";
         
     }
     
     
     @PostMapping("/register")//Oskar
-    public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
+    public String registerUser(@Validated @ModelAttribute("user") UserModel user, BindingResult bindingResult, Model model) {
         
         if (bindingResult.hasErrors()) {
             return "register";
@@ -121,9 +120,16 @@ public class UserController {
         
     }
 
-    @GetMapping("/logout")
-    public String logoutUser(Model model) {         // Alexander
-        return "logout";
+        
+    @GetMapping("/logoutSuccess")
+    public String logoutUser(Model model, Principal principal) {        // Alexander
+        if (principal == null) {
+            model.addAttribute("message", "you're not logged in to start with");
+        } else {
+            model.addAttribute("message", "you've been logged out successfully, redirectin to log in...");
+        }
+        return "logoutSuccess";
+
     }
     
     
@@ -150,13 +156,3 @@ public class UserController {
     
 }
 
-
-//        låt den va, också sexi kod <3 // Alexander
-//        boolean deletedUser = userService.deleteUserByEmail(email);
-//
-//        if (deletedUser) {
-//            model.addAttribute("message", "user deleted successful");
-//        } else {
-//            model.addAttribute("message", "failed to delete user");
-//        }
-//        return "deletedUser";

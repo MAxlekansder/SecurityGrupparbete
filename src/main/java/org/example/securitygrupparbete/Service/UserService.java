@@ -2,7 +2,7 @@ package org.example.securitygrupparbete.Service;
 
 
 import jakarta.annotation.PostConstruct;
-import org.example.securitygrupparbete.Model.UserDTO;
+import org.example.securitygrupparbete.Model.UserModel;
 import org.example.securitygrupparbete.Repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +27,13 @@ public class UserService {
 
     @PostConstruct // Alexander
     private void saveAdminUser(){ // Oskar
-        UserDTO admin = new UserDTO();
+        UserModel admin = new UserModel();
 
         admin.setUsername("Admin")
             .setPassword(passwordEncoder.encode("1234"))
             .setRole("ADMIN");
 
-        UserDTO user = new UserDTO();
+        UserModel user = new UserModel();
 
         user.setUsername("User")
             .setEmail("user@mail.com")
@@ -47,7 +47,7 @@ public class UserService {
 
 
     public boolean deleteUserByEmail(String email) {
-        Optional<UserDTO> user = userRepository.findByEmail(email);
+        Optional<UserModel> user = userRepository.findByEmail(email);
 
         if (user.isPresent()) {
             LOG.info("deleting userid {} with username {}", user.get().getId(), user.get().getUsername());
@@ -61,9 +61,9 @@ public class UserService {
    
     
     public boolean updatePassword(String email, String password) {
-        Optional<UserDTO> userOptional = userRepository.findByEmail(email);
+        Optional<UserModel> userOptional = userRepository.findByEmail(email);
         if (userOptional.isPresent()){
-            UserDTO user = userOptional.get();
+            UserModel user = userOptional.get();
             user.setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(password)));
             userRepository.save(user);
             return true;
