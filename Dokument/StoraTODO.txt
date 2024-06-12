@@ -19,7 +19,7 @@ Skapa upp admin i UserService som statisk loader                                
 
 Thymeleaf - HTML
 Logout - ”ska stå utloggad och sen routa till inloggning”                                   x
-Register - ”csrf-skydd”
+Register - ”csrf-skydd”                                                                     x
 
  / home- root ”ska stå att man är inloggad”                                                 x
 
@@ -33,7 +33,6 @@ update_success, ska visas när vi har uppdaterat allt korrekt                   
 
 Static  - Oskar
 404 - täcker när användaren inte hittas                                                     x
-
 Loggning                                                                                    x
 maska email, logga alla endpoints LOG.warn,                                                 x
 En debug för varje endpoint
@@ -60,7 +59,7 @@ VG-delen
 DTO                                                                                             x
 H2 istället för InMemoryUserDetails                                                             x
 Alla fält ska valideras @Validate                                                               x
-bara för att säkerställa. Fråga Håkan om Model går lika bra som DTO
+bara för att säkerställa. Fråga Håkan om Model går lika bra som DTO                             x
 
 
 
