@@ -1,3 +1,4 @@
+
 2024-06-12 10:12:27 [http-nio-8080-exec-5] INFO  org.example.securitygrupparbete.Controller.UserController - inside deleteUser routing deleteUser
 2024-06-12 10:12:31 [http-nio-8080-exec-8] INFO  org.example.securitygrupparbete.Controller.UserController - Inside deleteUserResult with params test@test.se
 2024-06-12 10:12:31 [http-nio-8080-exec-8] INFO  org.example.securitygrupparbete.Controller.UserController - false

@@ -34,7 +34,6 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.userService = userService;
-        
     }
     
     
@@ -120,8 +119,8 @@ public class UserController {
         return "deleteUserResult";
         
     }
-    
-    
+
+        
     @GetMapping("/logoutSuccess")
     public String logoutUser(Model model, Principal principal) {        // Alexander
         if (principal == null) {
@@ -130,6 +129,7 @@ public class UserController {
             model.addAttribute("message", "you've been logged out successfully, redirectin to log in...");
         }
         return "logoutSuccess";
+
     }
     
     
@@ -156,13 +156,3 @@ public class UserController {
     
 }
 
-
-//        låt den va, också sexi kod <3 // Alexander
-//        boolean deletedUser = userService.deleteUserByEmail(email);
-//
-//        if (deletedUser) {
-//            model.addAttribute("message", "user deleted successful");
-//        } else {
-//            model.addAttribute("message", "failed to delete user");
-//        }
-//        return "deletedUser";
