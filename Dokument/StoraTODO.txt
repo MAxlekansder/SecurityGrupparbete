@@ -6,12 +6,12 @@ Använd er av /* 	*/
 Överblick / controller
 Inlogging                           x
 utloggning                          x
-Registreringssida                   X
-Borttagning av användare
-Delete-controller
-Update-controller (uppdatera lösenord)
+Registreringssida                   x
+Borttagning av användare            x
+Delete-controller                   x
+Update-controller (uppdatera lösenord)                                                      x
 Skapa en preset av användare, ladda in USER, ADMIN (repository.save(preset))                x
-DTO-objekt, validering av email och lösenord. (@Validate param)                             x
+DTO-objekt, validering av email och lösenord. (@Validate param)
 PasswordEncoder encode -> hash lösenordet                                                   x
 MaskinUtils-klass -> statisk metod, anonymiserar en användares email innan det loggas       x
 Skapa upp admin i UserService som statisk loader                                            x
@@ -20,17 +20,21 @@ Skapa upp admin i UserService som statisk loader                                
 Thymeleaf - HTML
 Logout - ”ska stå utloggad och sen routa till inloggning”                                   x
 Register - ”csrf-skydd”
+
  / home- root ”ska stå att man är inloggad”                                                 x
-Admin-page
-Delete - ”csrf-skydd”, ta in epostadressen
+
+Admin-page                                                                                  x
+Delete - ”csrf-skydd”, ta in epostadressen                                                  x
 register_success, visa när användaren är registrerad                                        x
-error_page - defualtFailureURL
-update_success, ska visas när vi har uppdaterat allt korrekt
+
+error_page - defualtFailureURL                                                              x
+update_success, ska visas när vi har uppdaterat allt korrekt                                x
+
 
 Static  - Oskar
 404 - täcker när användaren inte hittas                                                     x
 
-Loggning
+Loggning                                                                                    x
 maska email, logga alla endpoints LOG.warn,                                                 x
 En debug för varje endpoint
 
@@ -39,10 +43,10 @@ Konfigfil
 
 
 
-Behörigheter - SecurityFilterChain // alexander
+Behörigheter - SecurityFilterChain // alexander                                                 x
 Förstasidan - ”alla får se men ska vara autentiserad, inkludera en utloggningsknapp”            x
 Register - endast admin får registrera nya användare, ny användare får USER                     x
-Delete - endast admin får deleta en user
+Delete - endast admin får deleta en user (thymeleaf /deleteUser som tar in parameter -> visa OK)x
 HTMLUtils - för att tvätta datat (controller)                                                   x
 
 Testing
@@ -61,9 +65,9 @@ bara för att säkerställa. Fråga Håkan om Model går lika bra som DTO
 
 
 
-
-Uppdatering - Fredrik
-Ta bort - Alexander
+Uppdatering - Fredrik X
+Registrering - Oskar x
+Ta bort - Alexander x
 
 Loggning - konfigfilen tillsammans
 

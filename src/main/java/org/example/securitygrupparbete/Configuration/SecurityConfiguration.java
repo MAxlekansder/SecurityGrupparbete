@@ -10,17 +10,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
-
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 
 @Configuration
@@ -40,11 +41,21 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(csrfCustomizer ->         // stoppar scripts från att sno cookien (withHttpOnlyFalse)
+                        csrfCustomizer          // nödvändig eftersom vi skickar forms från clientsidan till servern
+                                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+
+                )
                 .authorizeHttpRequests(autRequest ->
                         autRequest
-                                .requestMatchers("/", "/register").permitAll()
-                                .requestMatchers("/adminpage", "/update").hasRole("ADMIN")
+                                .requestMatchers("/").permitAll()
+                                .requestMatchers( "/adminpage"
+                                                    , "/update"
+                                                    , "/deleteUser"
+                                                    , "/deleteUserResult"
+                                                    , "/register")
+                                .hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/admin").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->

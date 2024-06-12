@@ -1,2 +1,3 @@
-2024-06-11 15:07:19 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerTest - Starting UserControllerTest using Java 22.0.1 with PID 66066 (started by oskarjohansson in /Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete)
-2024-06-11 15:07:19 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerTest - No active profile set, falling back to 1 default profile: "default"
+2024-06-11 21:15:23 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerTest - Starting UserControllerTest using Java 22.0.1 with PID 84556 (started by alexanderhasslund in /Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete)
+2024-06-11 21:15:23 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerTest - No active profile set, falling back to 1 default profile: "default"
+2024-06-11 21:15:25 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerTest - Started UserControllerTest in 1.969 seconds (process running for 2.511)
