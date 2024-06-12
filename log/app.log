@@ -1,3 +1,8 @@
-2024-06-11 21:15:23 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerTest - Starting UserControllerTest using Java 22.0.1 with PID 84556 (started by alexanderhasslund in /Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete)
-2024-06-11 21:15:23 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerTest - No active profile set, falling back to 1 default profile: "default"
-2024-06-11 21:15:25 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerTest - Started UserControllerTest in 1.969 seconds (process running for 2.511)
+2024-06-12 10:12:20 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Starting SecurityGrupparbeteApplication using Java 22.0.1 with PID 93208 (/Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete/target/classes started by alexanderhasslund in /Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete)
+2024-06-12 10:12:20 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-12 10:12:22 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Started SecurityGrupparbeteApplication in 2.042 seconds (process running for 2.398)
+2024-06-12 10:12:26 [http-nio-8080-exec-4] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user Admin
+2024-06-12 10:12:27 [http-nio-8080-exec-5] INFO  org.example.securitygrupparbete.Controller.UserController - inside deleteUser routing deleteUser
+2024-06-12 10:12:31 [http-nio-8080-exec-8] INFO  org.example.securitygrupparbete.Controller.UserController - Inside deleteUserResult with params test@test.se
+2024-06-12 10:12:31 [http-nio-8080-exec-8] INFO  org.example.securitygrupparbete.Controller.UserController - false
+2024-06-12 10:12:31 [http-nio-8080-exec-8] INFO  org.example.securitygrupparbete.Controller.UserController - failed to delete user

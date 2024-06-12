@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.HtmlUtils;
-import org.example.securitygrupparbete.Service.MaskingService;
 
 import java.security.Principal;
 
@@ -123,9 +122,14 @@ public class UserController {
     }
     
     
-    @GetMapping("/logout")
-    public String logoutUser(Model model) {         // Alexander
-        return "logout";
+    @GetMapping("/logoutSuccess")
+    public String logoutUser(Model model, Principal principal) {        // Alexander
+        if (principal == null) {
+            model.addAttribute("message", "you're not logged in to start with");
+        } else {
+            model.addAttribute("message", "you've been logged out successfully, redirectin to log in...");
+        }
+        return "logoutSuccess";
     }
     
     
