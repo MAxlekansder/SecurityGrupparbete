@@ -78,7 +78,6 @@ public class SecurityConfiguration {
                                                 .policyDirectives("script-src 'self'")
                                 )
                 )
-                .httpBasic(Customizer.withDefaults())
                 .build();
     }
 
