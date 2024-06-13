@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Uppdatera användare</title>
+    <title>Update user</title>
     <meta charset="UTF-8"/>
 </head>
 <body>
-<h1>Uppdatera användare</h1>
-<form th:object="${user}" method="post">
+<h1>Update user</h1>
+<form  th:object="${user}" method="post">
     <label for="email">E-post:</label>
     <input type="email" id="email" th:field="*{email}"/>
     <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
@@ -15,8 +15,10 @@
     <input type="password" id="password" th:field="*{password}"/>
     <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 
-    <button type="submit">Uppdatera</button>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+    <button type="submit">Update user password</button>
 </form>
-<div th:if="${error}" th:text="${error}"></div>
+
 </body>
 </html>

@@ -28,14 +28,11 @@ import static org.example.securitygrupparbete.Service.MaskingService.maskEmail;
 public class UserController {
     
     private final static Logger LOG = LoggerFactory.getLogger(UserController.class);
-    private final PasswordEncoder passwordEncoder;
-    private final UserRepository userRepository;
+
     private final UserService userService;
     
     
-    public UserController(PasswordEncoder passwordEncoder, UserRepository userRepository, UserService userService) {
-        this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
         this.userService = userService;
     }
     
@@ -47,12 +44,13 @@ public class UserController {
     }
     
     
-
     @PostMapping("/update")
     public String updateUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            LOG.warn("Binding result error in update: {} ", result.hasErrors());
-            return "update";
+            model.addAttribute("error", "You must fill in all the fields");
+            LOG.warn("Fields in update-form mismatch the userDTO " + result.getAllErrors());
+            return "error/updateUserFail";
+            
         }
         
         boolean success = false;
@@ -69,13 +67,12 @@ public class UserController {
             LOG.info("User with email: " + maskEmail(user.getEmail()) + " has been updated");
             return "updateUserSuccessful";
         } else {
-            model.addAttribute("error", "An unexpected error occurred");
-            LOG.error("An unexpected error occurred while updating user with email: " + maskEmail(user.getEmail()));
-            return "update";
+            model.addAttribute("error", "User could not be found");
+            return "error/updateUserFail";
         }
         
     }
-
+    
     
     @GetMapping("/register")//Oskar
     public String register(Model model) {
@@ -86,21 +83,24 @@ public class UserController {
     
     
     @PostMapping("/register")//Oskar
-    public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
+
+    public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult) {
+
         
         if (bindingResult.hasErrors()) {
             LOG.warn("Binding result error in post register {},", bindingResult.hasErrors());
-
+            
             return "register";
             
         } else {
             userService.registerUser(user);
+
+            LOG.warn("User registered {}", user);
                 return "saveUserSuccessful";
             }
-
         }
-
-
+        
+    }
     
     
     @GetMapping("/deleteUser")
@@ -109,7 +109,6 @@ public class UserController {
     }
     
     
-
     @PostMapping("/deleteUserResult")
     public String deleteUser(@RequestParam String email, Model model) {         // Alexander
         LOG.info("delete user with email " + maskEmail(email));
@@ -137,17 +136,15 @@ public class UserController {
         return "deleteUserResult";
         
     }
-
-
-        
+    
+    
     @GetMapping("/logoutSuccess")                                         // Alexander
     public String logoutUser(Model model) {            // redan clearat allt här, principal redan borta
         model.addAttribute("message", "you've been logged out, redirecting to log in...");
         return "logoutSuccess";
-
+        
     }
-
-
+    
     
     @GetMapping("/")
     public String homePage(Principal principal, Model model) {     // Oskar
