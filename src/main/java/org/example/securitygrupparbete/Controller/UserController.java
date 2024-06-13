@@ -28,14 +28,11 @@ import static org.example.securitygrupparbete.Service.MaskingService.maskEmail;
 public class UserController {
     
     private final static Logger LOG = LoggerFactory.getLogger(UserController.class);
-    private final PasswordEncoder passwordEncoder;
-    private final UserRepository userRepository;
+
     private final UserService userService;
     
     
-    public UserController(PasswordEncoder passwordEncoder, UserRepository userRepository, UserService userService) {
-        this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
         this.userService = userService;
     }
     
@@ -47,11 +44,13 @@ public class UserController {
     }
     
     
-    // TODO: 2024-06-12 finish 
     @PostMapping("/update")
     public String updateUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "update";
+            model.addAttribute("error", "You must fill in all the fields");
+            LOG.warn("Fields in update-form mismatch the userDTO " + result.getAllErrors());
+            return "error/updateUserFail";
+            
         }
         
         boolean success = false;
@@ -61,7 +60,6 @@ public class UserController {
         } catch (UsernameNotFoundException e) {
             LOG.warn("User with email: " + maskEmail(user.getEmail()) + " could not be found");
             LOG.warn(Arrays.toString(e.getStackTrace()));
-            
         }
         
         if (success) {
@@ -69,41 +67,39 @@ public class UserController {
             LOG.info("User with email: " + maskEmail(user.getEmail()) + " has been updated");
             return "updateUserSuccessful";
         } else {
-            model.addAttribute("error", "An unexpected error occurred");
-            LOG.error("An unexpected error occurred while updating user with email: " + maskEmail(user.getEmail()));
-            return "update";
+            model.addAttribute("error", "User could not be found");
+            return "error/updateUserFail";
         }
         
     }
     
     
-
-    
-    
     @GetMapping("/register")//Oskar
     public String register(Model model) {
-        model.addAttribute("user", new UserModel());
+        model.addAttribute("user", new UserDTO());
         return "register";
         
     }
     
     
     @PostMapping("/register")//Oskar
-    public String registerUser(@Validated @ModelAttribute("user") UserModel user, BindingResult bindingResult, Model model) {
+
+    public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult) {
+
         
         if (bindingResult.hasErrors()) {
+            LOG.warn("Binding result error in post register {},", bindingResult.hasErrors());
+            
             return "register";
             
         } else {
-            user.setRole("USER")
-                    .setUsername(HtmlUtils.htmlEscape(user.getUsername()))
-                    .setEmail(HtmlUtils.htmlEscape(user.getEmail()))
-                    .setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(user.getPassword())));
-            userRepository.save(user);
-            LOG.info("Saving new user object " + "Username:" + user.getUsername() + "Masking email: " + maskEmail(user.getEmail()));
-            
-            return "saveUserSuccessful";
+            userService.registerUser(user);
+
+            LOG.warn("User registered {}", user);
+                return "saveUserSuccessful";
+            }
         }
+        
     }
     
     
@@ -113,10 +109,9 @@ public class UserController {
     }
     
     
-    // TODO: 2024-06-12 finish 
     @PostMapping("/deleteUserResult")
     public String deleteUser(@RequestParam String email, Model model) {         // Alexander
-        LOG.info("Inside deleteUserResult with params " + email);
+        LOG.info("delete user with email " + maskEmail(email));
         //  model.addAttribute("message", userService.deleteUserByEmail(email) ? "user deleted successfully" : "failed to delete user");
         //  return "deletedUser";
         
@@ -132,7 +127,7 @@ public class UserController {
         }
         
         if (deletedUser) {
-            LOG.info("user deleted successful");
+            LOG.info("user deleted successfully {}", maskEmail(email));
             model.addAttribute("message", "user deleted successful");
         } else {
             LOG.error("failed to delete user");
@@ -141,26 +136,21 @@ public class UserController {
         return "deleteUserResult";
         
     }
-
-
-        
+    
+    
     @GetMapping("/logoutSuccess")                                         // Alexander
     public String logoutUser(Model model) {            // redan clearat allt här, principal redan borta
         model.addAttribute("message", "you've been logged out, redirecting to log in...");
         return "logoutSuccess";
-
+        
     }
     
     
     @GetMapping("/")
     public String homePage(Principal principal, Model model) {     // Oskar
         
-        if (principal == null) {
-            return "homepage";
-        }
-        
         model.addAttribute("user", principal);
-        LOG.info("LOGGING PRINCIPALE NAME IN HOME PAGE CONTROLLER " + principal.getName());
+        LOG.info("Logging principal in root: {}", principal.getName());
         
         return "homepage";
     }
