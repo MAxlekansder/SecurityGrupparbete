@@ -42,6 +42,9 @@ public class SecurityConfiguration {
 
     private static final Logger LOG = LoggerFactory.getLogger(SecurityConfiguration.class);
 
+
+
+
     @Bean
     public AuthenticationManager authenticationManager(UserDetailsServiceImpl userDetailsService) {
         var provider = new DaoAuthenticationProvider();

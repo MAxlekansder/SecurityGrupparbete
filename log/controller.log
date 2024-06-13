@@ -1,3 +1,0 @@
-2024-06-12 13:58:04 [http-nio-8080-exec-6] INFO  org.example.securitygrupparbete.Controller.UserController - Logging principal in root:  Admin
-2024-06-12 13:58:13 [http-nio-8080-exec-1] INFO  org.example.securitygrupparbete.Controller.UserController - Inside deleteUserResult with params user@mail.com
-2024-06-12 13:58:13 [http-nio-8080-exec-1] INFO  org.example.securitygrupparbete.Controller.UserController - user deleted successfully us**@mail.com
