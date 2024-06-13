@@ -2,18 +2,21 @@ package org.example.securitygrupparbete.Configuration;
 
 /******************
 
-csrf-tokenvalidering
+ csrf-tokenvalidering
 
-förhindra XSS-attacker
+ förhindra XSS-attacker
 
-Authorize specifika get-requests där användaren når
+ Authorize specifika get-requests där användaren når
 
-authorize specifika protokollrequests direkt mot metoderna som t ex POST / PUT / DELETE
-    Detta är bara för att säkerställa
+ authorize specifika protokollrequests direkt mot metoderna som t ex POST / PUT / DELETE
+ Detta är bara för att säkerställa
 
-logout -> radera nödvändiga cookies och olika sessionsids för att rensa sessionen och
-generera nya och unika för varje gång användaren loggar in
+ logout -> radera nödvändiga cookies och olika sessionsids för att rensa sessionen och
+ generera nya och unika för varje gång användaren loggar in
 
+ Authentication Manager tar hand om våran användarautentisering. Vi instantierar en DaoAuthenticationProvider.
+ Denna tar in vår UserServiceDetailsImpl samt vår PasswordEncoder i var sin metod för att kunna
+ hämta, autentisera och hålla våra användares authorisation i vår security context.
 
  *******************/
 
@@ -43,8 +46,6 @@ public class SecurityConfiguration {
     private static final Logger LOG = LoggerFactory.getLogger(SecurityConfiguration.class);
 
 
-
-
     @Bean
     public AuthenticationManager authenticationManager(UserDetailsServiceImpl userDetailsService) {
         var provider = new DaoAuthenticationProvider();
@@ -64,12 +65,12 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(autRequest ->
                         autRequest
                                 .requestMatchers("/").authenticated()
-                              //  .requestMatchers("/logout").authenticated() verkar som att spring overridar säkerheten oavsett
-                                .requestMatchers( "/admin"
-                                                    , "/update"
-                                                    , "/deleteUser"
-                                                    , "/deleteUserResult"
-                                                    , "/register")
+                                //  .requestMatchers("/logout").authenticated() verkar som att spring overridar säkerheten oavsett
+                                .requestMatchers("/admin"
+                                        , "/update"
+                                        , "/deleteUser"
+                                        , "/deleteUserResult"
+                                        , "/register")
                                 .hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.POST).hasRole("ADMIN")
