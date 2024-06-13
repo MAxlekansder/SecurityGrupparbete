@@ -115,6 +115,8 @@ public class UserController {
         //  model.addAttribute("message", userService.deleteUserByEmail(email) ? "user deleted successfully" : "failed to delete user");
         //  return "deletedUser";
         
+        
+        
         boolean deletedUser = false;
         
         try {
