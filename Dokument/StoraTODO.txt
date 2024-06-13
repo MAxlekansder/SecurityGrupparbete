@@ -50,10 +50,9 @@ HTMLUtils - för att tvätta datat (controller)                                 
 
 Testing
 MockMvc
-Förstasidan - Testa första med och utan en autentiserad användare
-Registreringsfunktion - Framgångsrik registrering och misslyckad registrering
-Borttagningsfunktion - -||-
-Använda httpBasic vid testning, ta bort csrf och formLogin
+Förstasidan - Testa första med och utan en autentiserad användare                               x
+Registreringsfunktion - Framgångsrik registrering och misslyckad registrering                   x
+Borttagningsfunktion - -||-                                                                     x
 
 VG-delen
 DTO                                                                                             x
