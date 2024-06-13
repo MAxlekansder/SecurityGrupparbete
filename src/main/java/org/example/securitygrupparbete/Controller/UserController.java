@@ -46,124 +46,121 @@ public class UserController {
         return "update";
     }
     
-    
+   
+            @PostMapping("/update")
+            public String updateUser (@Validated @ModelAttribute("user") UserDTO user, BindingResult result, Model model)
+            {
+                if (result.hasErrors()) {
+                    model.addAttribute("error", "You must fill in all the fields");
+                    LOG.warn("Fields in update-form mismatch the userDTO " + result.getAllErrors());
+                    return "error/updateUserFail";
 
-    @PostMapping("/update")
-    public String updateUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            LOG.warn("Binding result error in update: {} ", result.hasErrors());
-            return "update";
-        }
-        
-        boolean success = false;
-        
-        try {
-            success = userService.updatePassword(user.getEmail(), user.getPassword());
-        } catch (UsernameNotFoundException e) {
-            LOG.warn("User with email: " + maskEmail(user.getEmail()) + " could not be found");
-            LOG.warn(Arrays.toString(e.getStackTrace()));
-        }
-        
-        if (success) {
-            model.addAttribute("userEmail", maskEmail(user.getEmail()));
-            LOG.info("User with email: " + maskEmail(user.getEmail()) + " has been updated");
-            return "updateUserSuccessful";
-        } else {
-            model.addAttribute("error", "An unexpected error occurred");
-            LOG.error("An unexpected error occurred while updating user with email: " + maskEmail(user.getEmail()));
-            return "update";
-        }
-        
-    }
-
-    
-    @GetMapping("/register")//Oskar
-    public String register(Model model) {
-        model.addAttribute("user", new UserDTO());
-        return "register";
-        
-    }
-    
-    
-    @PostMapping("/register")//Oskar
-    public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
-        
-        if (bindingResult.hasErrors()) {
-            LOG.warn("Binding result error in post register {},", bindingResult.hasErrors());
-
-            return "register";
-            
-        } else {
-            userService.registerUser(user);
-                return "saveUserSuccessful";
+                }
+                
+                boolean success = false;
+                
+                try {
+                    success = userService.updatePassword(user.getEmail(), user.getPassword());
+                } catch (UsernameNotFoundException e) {
+                    LOG.warn("User with email: " + maskEmail(user.getEmail()) + " could not be found");
+                    LOG.warn(Arrays.toString(e.getStackTrace()));
+                }
+                
+                if (success) {
+                    model.addAttribute("userEmail", maskEmail(user.getEmail()));
+                    LOG.info("User with email: " + maskEmail(user.getEmail()) + " has been updated");
+                    return "updateUserSuccessful";
+                } else {
+                    model.addAttribute("error", "User could not be found");
+                    return "error/updateUserFail";
+                }
+                
             }
-
-        }
-
-
-    
-    
-    @GetMapping("/deleteUser")
-    public String deleteUserForm() {
-        return "deleteUser";
-    }
-    
-    
-
-    @PostMapping("/deleteUserResult")
-    public String deleteUser(@RequestParam String email, Model model) {         // Alexander
-        LOG.info("delete user with email " + maskEmail(email));
-        //  model.addAttribute("message", userService.deleteUserByEmail(email) ? "user deleted successfully" : "failed to delete user");
-        //  return "deletedUser";
-        
-        boolean deletedUser = false;
-        
-        try {
-            deletedUser = userService.deleteUserByEmail(email);
             
-        } catch (UsernameNotFoundException e) {
-            LOG.warn("User could not be found");
-            LOG.warn(Arrays.toString(e.getStackTrace()));
-            LOG.info(String.valueOf(deletedUser));
+            
+            @GetMapping("/register")//Oskar
+            public String register (Model model){
+                model.addAttribute("user", new UserDTO());
+                return "register";
+                
+            }
+            
+            
+            @PostMapping("/register")//Oskar
+            public String registerUser (@Validated @ModelAttribute("user") UserDTO user, BindingResult
+            bindingResult, Model model){
+                
+                if (bindingResult.hasErrors()) {
+                    LOG.warn("Binding result error in post register {},", bindingResult.hasErrors());
+                    
+                    return "register";
+                    
+                } else {
+                    userService.registerUser(user);
+                    return "saveUserSuccessful";
+                }
+                
+            }
+            
+            
+            @GetMapping("/deleteUser")
+            public String deleteUserForm () {
+                return "deleteUser";
+            }
+            
+            
+            @PostMapping("/deleteUserResult")
+            public String deleteUser (@RequestParam String email, Model model){         // Alexander
+                LOG.info("delete user with email " + maskEmail(email));
+                //  model.addAttribute("message", userService.deleteUserByEmail(email) ? "user deleted successfully" : "failed to delete user");
+                //  return "deletedUser";
+                
+                boolean deletedUser = false;
+                
+                try {
+                    deletedUser = userService.deleteUserByEmail(email);
+                    
+                } catch (UsernameNotFoundException e) {
+                    LOG.warn("User could not be found");
+                    LOG.warn(Arrays.toString(e.getStackTrace()));
+                    LOG.info(String.valueOf(deletedUser));
+                }
+                
+                if (deletedUser) {
+                    LOG.info("user deleted successfully {}", maskEmail(email));
+                    model.addAttribute("message", "user deleted successful");
+                } else {
+                    LOG.error("failed to delete user");
+                    model.addAttribute("message", "failed to delete user");
+                }
+                return "deleteUserResult";
+                
+            }
+            
+            
+            @GetMapping("/logoutSuccess")                                         // Alexander
+            public String logoutUser (Model model){            // redan clearat allt här, principal redan borta
+                model.addAttribute("message", "you've been logged out, redirecting to log in...");
+                return "logoutSuccess";
+                
+            }
+            
+            
+            @GetMapping("/")
+            public String homePage (Principal principal, Model model){     // Oskar
+                
+                model.addAttribute("user", principal);
+                LOG.info("Logging principal in root: {}", principal.getName());
+                
+                return "homepage";
+            }
+            
+            
+            @GetMapping("/admin")
+            public String adminPage (Model model){
+                return "adminpage";
+            }
+            
+            
         }
-        
-        if (deletedUser) {
-            LOG.info("user deleted successfully {}", maskEmail(email));
-            model.addAttribute("message", "user deleted successful");
-        } else {
-            LOG.error("failed to delete user");
-            model.addAttribute("message", "failed to delete user");
-        }
-        return "deleteUserResult";
-        
-    }
-
-
-        
-    @GetMapping("/logoutSuccess")                                         // Alexander
-    public String logoutUser(Model model) {            // redan clearat allt här, principal redan borta
-        model.addAttribute("message", "you've been logged out, redirecting to log in...");
-        return "logoutSuccess";
-
-    }
-
-
-    
-    @GetMapping("/")
-    public String homePage(Principal principal, Model model) {     // Oskar
-        
-        model.addAttribute("user", principal);
-        LOG.info("Logging principal in root: {}", principal.getName());
-        
-        return "homepage";
-    }
-    
-    
-    @GetMapping("/admin")
-    public String adminPage(Model model) {
-        return "adminpage";
-    }
-    
-    
-}
 
