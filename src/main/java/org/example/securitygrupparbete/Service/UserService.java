@@ -51,11 +51,12 @@ public class UserService {
 
 
     public boolean deleteUserByEmail(String email) {
-        Optional<UserModel> user = userRepository.findByEmail(email);
+        Optional<UserModel> optionalUser = userRepository.findByEmail(email);
 
-        if (user.isPresent()) {
-            LOG.info("deleting userid {} with username {}", user.get().getId(), user.get().getUsername());
-            userRepository.deleteById(user.get().getId());
+        if (optionalUser.isPresent()) {
+            UserModel user = optionalUser.get();
+            LOG.info("deleting userid {} with username {}", user.getId(), user.getUsername());
+            userRepository.deleteById(user.getId());
 
             return true;
         }
@@ -76,7 +77,7 @@ public class UserService {
 
     }
 
-    public boolean registerUser(UserDTO user) {
+    public void registerUser(UserDTO user) {
 
         UserModel userToSave = new UserModel();
 
@@ -88,8 +89,6 @@ public class UserService {
 
 
             LOG.info("Saving new user object. Username: {}, Masking email: {} ", userToSave.getUsername(), maskEmail(userToSave.getEmail()));
-            return true;
-
 
     }
     

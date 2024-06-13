@@ -104,5 +104,4 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder(12);
     }
 
-
 }
