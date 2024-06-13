@@ -12,7 +12,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.validation.BindingResult;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -56,7 +58,9 @@ public class UserControllerSliceTest {
    @WithMockUser(roles = "ADMIN")
    void testPostRegisterUserPageWithUnauthorizedRole() throws Exception {
 
-       String userForm = "firstName=Oskar";
+       String userForm = "firstName=Oskar" +
+                         "&" +
+                         "email=oskar";
 
        mvc.perform(post("/register")
                .with(csrf())
@@ -65,7 +69,15 @@ public class UserControllerSliceTest {
                .andExpect(status()
                        .isOk())
                .andExpect(view().name("register"))
-               .andExpect(model().attributeHasFieldErrorCode("user","email","NotBlank"));
+               .andExpect(model().attributeHasFieldErrorCode("user","username","NotBlank"))
+               .andExpect(model().attributeHasFieldErrors("user","email"))
+               .andExpect(result-> {
+                   BindingResult bindingResult = (BindingResult) result.getModelAndView().getModel().get("org.springframework.validation.BindingResult.user");
+                   String actualErrorMessage = bindingResult.getFieldError("email").getDefaultMessage();
+                   assertEquals("Email should be valid", actualErrorMessage);
+               })
+               .andExpect(model().attributeHasFieldErrorCode("user","password","NotBlank"))
+       ;
    }
 
     @Test
