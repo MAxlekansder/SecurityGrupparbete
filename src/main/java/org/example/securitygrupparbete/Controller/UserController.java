@@ -98,42 +98,39 @@ public class UserController {
             LOG.warn("User registered {}", user);
             return "saveUserSuccessful";
         }
-    }
+
 
 
     @GetMapping("/deleteUser")
     public String deleteUserForm() {
         return "deleteUser";
     }
-
+      
 
     @PostMapping("/deleteUserResult")
-    public String deleteUser(@RequestParam String email, Model model) {         // Alexander
-        LOG.info("delete user with email " + maskEmail(email));
-        //  model.addAttribute("message", userService.deleteUserByEmail(email) ? "user deleted successfully" : "failed to delete user");
-        //  return "deletedUser";
-
-
-        boolean deletedUser = false;
+    public String deleteUser(@RequestParam String email, Model model) { // Alexander
+        LOG.info("trying to delete user with email {}", maskEmail(email));
 
         try {
-            deletedUser = userService.deleteUserByEmail(email);
+            // Försök att ta bort användaren
+            boolean deletedUser = userService.deleteUserByEmail(email);
+
+            if (deletedUser) {
+                LOG.info("User deleted successfully {}", maskEmail(email));
+                model.addAttribute("message", "User deleted successfully");
+            } else {
+                LOG.error("Failed to delete user");
+                model.addAttribute("message", "Failed to delete user");
+            }
 
         } catch (UsernameNotFoundException e) {
-            LOG.warn("User could not be found");
+            // Hanterar om användaren inte hittades
+            LOG.warn("User with email {} not found", maskEmail(email));
             LOG.warn(Arrays.toString(e.getStackTrace()));
-            LOG.info(String.valueOf(deletedUser));
+            model.addAttribute("message", "User not found");
         }
 
-        if (deletedUser) {
-            LOG.info("user deleted successfully {}", maskEmail(email));
-            model.addAttribute("message", "user deleted successful");
-        } else {
-            LOG.error("failed to delete user");
-            model.addAttribute("message", "failed to delete user");
-        }
         return "deleteUserResult";
-
     }
 
 
