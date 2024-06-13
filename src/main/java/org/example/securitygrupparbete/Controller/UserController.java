@@ -126,7 +126,7 @@ public class UserController {
             }
 
         } catch (UsernameNotFoundException e) {
-            // Hantera om användaren inte hittades
+            // Hanterar om användaren inte hittades
             LOG.warn("User with email {} not found", maskEmail(email));
             LOG.warn(Arrays.toString(e.getStackTrace()));
             model.addAttribute("message", "User not found");
