@@ -88,4 +88,8 @@ public class UserControllerSliceTest {
     @Test
     void testEmpty() throws Exception {
     }
+
+    @Test
+    void testEmpty2() throws Exception {
+    }
 }
