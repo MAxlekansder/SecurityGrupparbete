@@ -28,14 +28,11 @@ import static org.example.securitygrupparbete.Service.MaskingService.maskEmail;
 public class UserController {
     
     private final static Logger LOG = LoggerFactory.getLogger(UserController.class);
-    private final PasswordEncoder passwordEncoder;
-    private final UserRepository userRepository;
+
     private final UserService userService;
     
     
-    public UserController(PasswordEncoder passwordEncoder, UserRepository userRepository, UserService userService) {
-        this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
         this.userService = userService;
     }
     
@@ -86,7 +83,7 @@ public class UserController {
     
     
     @PostMapping("/register")//Oskar
-    public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult, Model model) {
+    public String registerUser(@Validated @ModelAttribute("user") UserDTO user, BindingResult bindingResult) {
         
         if (bindingResult.hasErrors()) {
             LOG.warn("Binding result error in post register {},", bindingResult.hasErrors());
@@ -95,9 +92,9 @@ public class UserController {
             
         } else {
             userService.registerUser(user);
+            LOG.warn("User registered {}", user);
                 return "saveUserSuccessful";
             }
-
         }
 
 

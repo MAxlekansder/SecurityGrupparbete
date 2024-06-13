@@ -1,27 +1,36 @@
 package org.example.securitygrupparbete.Controller;
 
 
+import org.example.securitygrupparbete.Configuration.SecurityConfiguration;
+import org.example.securitygrupparbete.Service.UserDetailsServiceImpl;
+import org.example.securitygrupparbete.Service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
+import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
+@WebMvcTest(UserController.class)
+@Import(SecurityConfiguration.class)
 public class UserControllerSliceTest {
 
     @Autowired
     private MockMvc mvc;
 
+    @MockBean
+    private UserDetailsServiceImpl userServiceImpl;
+    @MockBean
+    private UserService userService;
 
     @Test
     void loadHomepageWithoutLoggedinUser() throws Exception {
@@ -29,7 +38,7 @@ public class UserControllerSliceTest {
     }
 
     @Test
-    @WithMockUser(username = "Admin", password = "1234", roles = "ADMIN")
+    @WithMockUser(username = "Admin")
     void loadHomepageWithLoggedinAdminUser() throws Exception {
 
         mvc.perform(get("/")).andExpect(status().isOk())
@@ -38,14 +47,29 @@ public class UserControllerSliceTest {
     }
 
     @Test
-    @WithMockUser(username = "User", password = "1234", roles = "USER")
-    void testRegisterUserPageWithUnauthorizedRole() throws Exception {
+    @WithMockUser(roles = "USER")
+    void testGetRegisterUserPageWithUnauthorizedRole() throws Exception {
         mvc.perform(get("/register").with(csrf())).andExpect(status().isForbidden());
     }
 
+   @Test
+   @WithMockUser(roles = "ADMIN")
+   void testPostRegisterUserPageWithUnauthorizedRole() throws Exception {
+
+       String userForm = "firstName=Oskar";
+
+       mvc.perform(post("/register")
+               .with(csrf())
+                       .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                       .content(userForm))
+               .andExpect(status()
+                       .isOk())
+               .andExpect(view().name("register"))
+               .andExpect(model().attributeHasFieldErrorCode("user","email","NotBlank"));
+   }
+
     @Test
-    @WithMockUser(username = "Admin", password = "1234", roles = "ADMIN")
     void testRegisterUserPageWithAuthorizedRole() throws Exception {
-        mvc.perform(get("/register").with(csrf())).andExpect(status().isOk());
+        mvc.perform(get("/register").with(csrf()).with(user("user").roles("ADMIN"))).andExpect(status().isOk());
     }
 }

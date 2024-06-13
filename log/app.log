@@ -1,9 +1,5 @@
-2024-06-12 13:57:51 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Starting SecurityGrupparbeteApplication using Java 22.0.1 with PID 5969 (/Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete/target/classes started by alexanderhasslund in /Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete)
-2024-06-12 13:57:51 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - No active profile set, falling back to 1 default profile: "default"
-2024-06-12 13:57:53 [main] WARN  org.example.securitygrupparbete.Configuration.SecurityConfiguration - New provider in Auth Manager created
-2024-06-12 13:57:53 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Started SecurityGrupparbeteApplication in 2.192 seconds (process running for 2.57)
-2024-06-12 13:58:03 [http-nio-8080-exec-5] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user Admin
-2024-06-12 13:58:04 [http-nio-8080-exec-6] INFO  org.example.securitygrupparbete.Controller.UserController - Logging principal in root:  Admin
-2024-06-12 13:58:13 [http-nio-8080-exec-1] INFO  org.example.securitygrupparbete.Controller.UserController - Inside deleteUserResult with params user@mail.com
-2024-06-12 13:58:13 [http-nio-8080-exec-1] INFO  org.example.securitygrupparbete.Service.UserService - deleting userid 2 with username User
-2024-06-12 13:58:13 [http-nio-8080-exec-1] INFO  org.example.securitygrupparbete.Controller.UserController - user deleted successfully us**@mail.com
+2024-06-13 09:25:36 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerSliceTest - Starting UserControllerSliceTest using Java 22.0.1 with PID 72197 (started by oskarjohansson in /Users/oskarjohansson/Projects/Java 2024/IT & informationssäkerhet/Grupparbete)
+2024-06-13 09:25:36 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerSliceTest - No active profile set, falling back to 1 default profile: "default"
+2024-06-13 09:25:37 [main] WARN  org.example.securitygrupparbete.Configuration.SecurityConfiguration - New provider in Auth Manager created
+2024-06-13 09:25:37 [main] INFO  org.example.securitygrupparbete.Controller.UserControllerSliceTest - Started UserControllerSliceTest in 1.205 seconds (process running for 1.759)
+2024-06-13 09:25:37 [main] WARN  org.example.securitygrupparbete.Controller.UserController - Binding result error in post register true,
