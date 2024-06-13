@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>update</title>
+    <title>Title</title>
 </head>
 <body>
-<h1>Update successful</h1>
-<p th:text="'Password for ' + ${userEmail} + ' is now updated'"></p>
+<h1>Update failed</h1>
+<p th:text="${error}"></p>
 <div>
     <a th:href="@{/}">
         <button>Go to Home page</button>
@@ -15,6 +15,11 @@
 <div>
     <a th:href="@{/adminpage}">
         <button>Go to Admin page</button>
+    </a>
+</div>
+<div>
+    <a th:href="@{/update}">
+        <button>Go back to Update page</button>
     </a>
 </div>
 </body>
