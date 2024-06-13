@@ -84,4 +84,8 @@ public class UserControllerSliceTest {
     void testRegisterUserPageWithAuthorizedRole() throws Exception {
         mvc.perform(get("/register").with(csrf()).with(user("user").roles("ADMIN"))).andExpect(status().isOk());
     }
+
+    @Test
+    void testEmpty() throws Exception {
+    }
 }
