@@ -15,7 +15,7 @@ package org.example.securitygrupparbete.Configuration;
  generera nya och unika för varje gång användaren loggar in
 
  Authentication Manager tar hand om våran användarautentisering. Vi instantierar en DaoAuthenticationProvider.
- Denna tar in vår UserServiceDetailsImpl samt vår PasswordDecoder i var sin metod för att kunna
+ Denna tar in vår UserServiceDetailsImpl samt vår PasswordEncoder i var sin metod för att kunna
  hämta, autentisera och hålla våra användares authorisation i vår security context.
 
  *******************/
