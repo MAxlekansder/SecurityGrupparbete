@@ -1,2 +1,2 @@
-2024-06-13 16:31:35 [http-nio-8080-exec-2] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user Admin
-2024-06-13 16:31:44 [http-nio-8080-exec-6] INFO  org.example.securitygrupparbete.Service.UserService - deleting userid 2 with username User
+2024-06-14 13:44:14 [http-nio-8080-exec-6] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user Admin
+2024-06-14 13:44:21 [http-nio-8080-exec-3] INFO  org.example.securitygrupparbete.Service.UserService - deleting userid 2 with username User
