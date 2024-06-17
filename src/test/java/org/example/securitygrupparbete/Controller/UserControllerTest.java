@@ -70,6 +70,8 @@ class UserControllerTest {
                 .andExpect(status().isForbidden());
     }
 
+
+
     @Test @DisplayName("Test reaching registration with mockUser as user and csrf token")
     @WithMockUser(username = "User", password = "1234", roles = "USER")
     public void testIfUserCanReachRegistrationPage() throws Exception {         // Alexander
@@ -77,6 +79,8 @@ class UserControllerTest {
                 .andExpect(status().isForbidden());
 
     }
+
+
 
     @Test @DisplayName("Test reaching registration with mockUser as admin and csrf token")
     @WithMockUser(username = "Admin", password = "1234", roles = "ADMIN")
