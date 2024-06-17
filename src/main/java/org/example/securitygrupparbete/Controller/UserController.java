@@ -98,11 +98,12 @@ public class UserController {
             LOG.warn("User registered {}", user);
             return "saveUserSuccessful";
         }
+    }
 
 
 
     @GetMapping("/deleteUser")
-    public String deleteUserForm() {
+    public String deleteUserForm() { // Alexander
         return "deleteUser";
     }
       
