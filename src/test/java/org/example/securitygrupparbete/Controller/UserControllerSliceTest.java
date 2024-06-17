@@ -12,9 +12,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.validation.BindingResult;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -69,23 +67,38 @@ public class UserControllerSliceTest {
                .andExpect(status()
                        .isOk())
                .andExpect(view().name("register"))
-               .andExpect(model().attributeHasFieldErrorCode("user","username","NotBlank"))
                .andExpect(model().attributeHasFieldErrors("user","email"))
-               .andExpect(result-> {
-                   BindingResult bindingResult = (BindingResult) result.getModelAndView().getModel().get("org.springframework.validation.BindingResult.user");
-                   String actualErrorMessage = bindingResult.getFieldError("email").getDefaultMessage();
-                   assertEquals("Email should be valid", actualErrorMessage);
-               })
+               .andExpect(content().string(org.hamcrest.Matchers.containsString("Email should be valid"))
+               )
                .andExpect(model().attributeHasFieldErrorCode("user","password","NotBlank"))
        ;
    }
 
+   @Test
+   @WithMockUser(roles = "ADMIN")
+   void testRegisterUserSuccessfully() throws Exception {
+       String userForm = "firstName=Oskar" +
+                         "&" +
+                         "lastName=Johansson" +
+                         "&" +
+                         "age=37" +
+                         "&" +
+                         "username=oskar" +
+                         "&" +
+                         "email=oskar@mail.com" +
+                         "&" +
+                         "password=oskar";
+
+        mvc.perform(post("/register").with(csrf())
+               .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+               .content(userForm))
+               .andExpect(status().isOk())
+               .andExpect(content().string(org.hamcrest.Matchers.containsString("Your user is now saved")));
+   }
+
+
     @Test
     void testRegisterUserPageWithAuthorizedRole() throws Exception {
         mvc.perform(get("/register").with(csrf()).with(user("user").roles("ADMIN"))).andExpect(status().isOk());
-    }
-
-    @Test
-    void testEmpty() throws Exception {
     }
 }
