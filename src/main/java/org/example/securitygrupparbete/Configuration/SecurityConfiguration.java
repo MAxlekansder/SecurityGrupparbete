@@ -120,9 +120,11 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrfCustomizer ->                      // stoppar scripts från att sno cookien (withHttpOnlyFalse)
-                        csrfCustomizer                       // nödvändig eftersom vi skickar forms från clientsidan till servern
+                .csrf(csrfCustomizer -> {                      // stoppar scripts från att sno cookien (withHttpOnlyFalse)
+                    LOG.warn("Configuring CSRF protection");   // nödvändig eftersom vi skickar forms från clientsidan till servern
+                    csrfCustomizer
                                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        }
                 )
                 .authorizeHttpRequests(autRequest ->
                         autRequest

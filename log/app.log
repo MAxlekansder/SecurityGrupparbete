@@ -1,4 +1,7 @@
-2024-06-17 12:32:45 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Starting SecurityGrupparbeteApplication using Java 22.0.1 with PID 71453 (/Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete/target/classes started by alexanderhasslund in /Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete)
-2024-06-17 12:32:45 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - No active profile set, falling back to 1 default profile: "default"
-2024-06-17 12:32:47 [main] WARN  org.example.securitygrupparbete.Configuration.SecurityConfiguration - New provider in Auth Manager created
-2024-06-17 12:32:47 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Started SecurityGrupparbeteApplication in 2.03 seconds (process running for 2.384)
+2024-06-18 14:09:18 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Starting SecurityGrupparbeteApplication using Java 22.0.1 with PID 93736 (/Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete/target/classes started by alexanderhasslund in /Users/alexanderhasslund/IdeaProjects/SecurityGrupparbete)
+2024-06-18 14:09:18 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-18 14:09:20 [main] WARN  org.example.securitygrupparbete.Configuration.SecurityConfiguration - Trying to reach the website
+2024-06-18 14:09:20 [main] WARN  org.example.securitygrupparbete.Configuration.SecurityConfiguration - New provider in Auth Manager created
+2024-06-18 14:09:20 [main] INFO  org.example.securitygrupparbete.SecurityGrupparbeteApplication - Started SecurityGrupparbeteApplication in 2.031 seconds (process running for 2.336)
+2024-06-18 14:09:32 [http-nio-8080-exec-4] INFO  org.example.securitygrupparbete.Service.UserDetailsServiceImpl - Logging in user Admin
+2024-06-18 14:09:33 [http-nio-8080-exec-5] INFO  org.example.securitygrupparbete.Controller.UserController - Logging principal in root: Admin
