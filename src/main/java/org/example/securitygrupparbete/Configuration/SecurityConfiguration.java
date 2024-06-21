@@ -2,15 +2,15 @@ package org.example.securitygrupparbete.Configuration;
 
 
 /**
-
-csrf-tokenvalidering (Cross site Request Forgery) - vi implementerar en egen skräddarsydd
+ 
+ csrf-tokenvalidering (Cross site Request Forgery) - vi implementerar en egen skräddarsydd
  csrfhantering i vårt program, och går bort från .csrf(Customizer.withDefaults()) för att
  förstå mer hur vi kan implementera lambdauttrycket, som ungefärligt fungerar som  ett
  functional interface. Lambdauttrycket låter oss skapa smidigare instanser där vi får allt
  direkt i metodanropet. Då vi kallar på csrf-token, skapar vi upp valida sessioner mellan
  klienten och servern för att stoppa falska förfrågningar får tredjepartsklienter.
  -- Alexander
-
+ 
  XSS-attacker (Cross-site Scripting) - vi konfigurerar våra HTTP-headers för att sätta upp
  en CSP (Content Security Policy). Det vi gör är att vi inkluderar och introducerar endast
  en regel som säger att vi endast kan köra script på vår sida som ligger inom samma domän.
@@ -22,7 +22,7 @@ csrf-tokenvalidering (Cross site Request Forgery) - vi implementerar en egen skr
  hämta de nödvändiga metoderna, "Policy" är alltså vårt objekt vi hämtar in och kallar på
  dess metoder som vi vill nyttja och anpassa.
  -- Alexander
-
+ 
  Authorize specifika get-requests. Vi ser även till att vardera vy har sin begränsning
  för vilka som får respektive sida. Vi har då alltså satt upp, beroende på din roll som
  användare vart du får komma in. Du kan dock inte nå något om du inte är autentiserad.
@@ -33,14 +33,14 @@ csrf-tokenvalidering (Cross site Request Forgery) - vi implementerar en egen skr
  autentiserade möjlighet att nå de webbplatser som inte är begränsade till endast admin
  som t ex, register, adminpage, deleteUser, update etc.
  -- Alexander
-
+ 
  Loginfunktionen är inget speciellt, vi använder oss av Springs automagiska inloggningssida
  istället för att bygga upp en egen och hålla det i sin egen htmlsida. Vi skickar användaren
  vidare efter en lyckad inloggning till vår homepage, och möter användaren med dess roll.
  Vi använder oss av permitAll() för att låta alla ha möjligheten att logga in i första hand.
  Det blir vår första kontakt för användaren att nå vårt program.
  -- Alexander
-
+ 
  När vi loggar ut så ser vi till att rensa upp lite saker och se till att vi hanterar
  användarensutloggning korrekt. Vi går igenom ett par antal steg här. Vi använder oss
  av metodeninvalidateHttpSession som vi sätter till "true". försäkrar vi oss om session
@@ -54,33 +54,36 @@ csrf-tokenvalidering (Cross site Request Forgery) - vi implementerar en egen skr
  av hela kedjan - .deleteCookies går mot klientsidan och .invaldiateHttpSession går mot
  serversidan. Vi erbjuder alltså en heltäckande och omfattande säkerhetslösning.
  -- Alexander
-
-
+ 
+ 
  Authentication Manager tar hand om våran användarautentisering. Vi instantierar en DaoAuthenticationProvider.
  Denna tar in vår UserServiceDetailsImpl samt vår PasswordEncoder i var sin metod för att kunna
  hämta, autentisera och hålla våra användares authorisation i vår security context.
  -- Oskar
-
-**/
+ 
+ Password Encoder returnerar bara en instans av BCryptPasswordEncoder. Den tillåter oss att hasha strängar.
+ Det innebär att strängar görs om och blir oigenkännliga. Detta sker på ett förutsägbart sätt vilket gör att två
+ lika strängar, även är lika efter hashning. Man kan dock inte få tillbaka strängen. Detta gör att vi kan
+ lagra lösenord i databasen utan att kunna se dem i klartext
+ **/
 
 /****************** 
-
+ 
  csrf-tokenvalidering
-
+ 
  förhindra XSS-attacker
-
+ 
  Authorize specifika get-requests där användaren når
-
+ 
  authorize specifika protokollrequests direkt mot metoderna som t ex POST / PUT / DELETE
  Detta är bara för att säkerställa
-
+ 
  logout -> radera nödvändiga cookies och olika sessionsids för att rensa sessionen och
  generera nya och unika för varje gång användaren loggar in
-
+ 
  Authentication Manager tar hand om våran användarautentisering. Vi instantierar en DaoAuthenticationProvider.
  Denna tar in vår UserServiceDetailsImpl samt vår PasswordEncoder i var sin metod för att kunna
  hämta, autentisera och hålla våra användares authorisation i vår security context.
-
  *******************/
 
 
@@ -104,10 +107,10 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
-
+    
     private static final Logger LOG = LoggerFactory.getLogger(SecurityConfiguration.class);
-
-
+    
+    
     @Bean
     public AuthenticationManager authenticationManager(UserDetailsServiceImpl userDetailsService) {
         var provider = new DaoAuthenticationProvider();
@@ -116,7 +119,8 @@ public class SecurityConfiguration {
         LOG.warn("New provider in Auth Manager created", provider);
         return new ProviderManager(provider);
     }
-
+    
+    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -161,10 +165,12 @@ public class SecurityConfiguration {
                 )
                 .build();
     }
-
+    
+    
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);
     }
-
+    
+    
 }
