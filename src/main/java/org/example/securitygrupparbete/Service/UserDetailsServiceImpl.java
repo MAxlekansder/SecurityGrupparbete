@@ -10,24 +10,27 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-
+    
     private final static Logger LOG = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
-
+    
     private UserRepository userRepository;
-
+    
+    
     public UserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
+    
+    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<UserModel> user = userRepository.findByUsername(username);
-
-        if(user.isPresent()){
+        
+        if (user.isPresent()) {
             var userObj = user.get();
             LOG.info("Logging in user " + userObj.getUsername());
             return User.builder()
@@ -35,12 +38,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                     .password(userObj.getPassword())
                     .roles(userObj.getRole())
                     .build();
-        }
-
-        else {
+        } else {
             LOG.info("User not found for username:" + username);
             throw new UsernameNotFoundException(username);
         }
     }
+    
+    
 }
 

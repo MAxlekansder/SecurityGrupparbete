@@ -1,5 +1,9 @@
 package org.example.securitygrupparbete.Service;
 
+/*
+ * Info om UserService:
+ *
+ * */
 
 import jakarta.annotation.PostConstruct;
 import org.example.securitygrupparbete.DTO.UserDTO;
@@ -18,80 +22,80 @@ import static org.example.securitygrupparbete.Service.MaskingService.maskEmail;
 
 @Service
 public class UserService {
-
+    
     private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
+    
+    
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-
-
+    
+    
     @PostConstruct // Alexander
-    private void saveAdminUser(){ // Oskar
+    private void saveAdminUser() { // Oskar
         UserModel admin = new UserModel();
-
+        
         admin.setUsername("Admin")
-            .setPassword(passwordEncoder.encode("1234"))
-            .setRole("ADMIN");
-
+                .setPassword(passwordEncoder.encode("1234"))
+                .setRole("ADMIN");
+        
         UserModel user = new UserModel();
-
+        
         user.setUsername("User")
-            .setEmail("user@mail.com")
-            .setPassword(passwordEncoder.encode("1234"))
-            .setRole("USER");
-
+                .setEmail("user@mail.com")
+                .setPassword(passwordEncoder.encode("1234"))
+                .setRole("USER");
+        
         userRepository.save(admin);
         userRepository.save(user);
-
+        
     }
-
-
+    
+    
     public boolean deleteUserByEmail(String email) {
         Optional<UserModel> optionalUser = userRepository.findByEmail(email);
-
+        
         if (optionalUser.isPresent()) {
             UserModel user = optionalUser.get();
             LOG.info("deleting userid {} with username {}", user.getId(), user.getUsername());
             userRepository.deleteById(user.getId());
-
+            
             return true;
         }
         throw new UsernameNotFoundException("User with email " + MaskingService.maskEmail(email) + " was not found");
     }
-
-   
+    
     
     public boolean updatePassword(String email, String password) {
         Optional<UserModel> userOptional = userRepository.findByEmail(email);
-        if (userOptional.isPresent()){
+        if (userOptional.isPresent()) {
             UserModel user = userOptional.get();
             user.setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(password)));
             userRepository.save(user);
             return true;
         }
         throw new UsernameNotFoundException("User with email " + MaskingService.maskEmail(email) + " was not found");
-
+        
     }
-
+    
+    
     public void registerUser(UserDTO user) {
-
+        
         UserModel userToSave = new UserModel();
-
+        
         userToSave.setRole("USER")
-                    .setUsername(HtmlUtils.htmlEscape(user.getUsername()))
-                    .setEmail(HtmlUtils.htmlEscape(user.getEmail()))
-                    .setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(user.getPassword())));
-            userRepository.save(userToSave);
-
-
-            LOG.info("Saving new user object. Username: {}, Masking email: {} ", userToSave.getUsername(), maskEmail(userToSave.getEmail()));
-
+                .setUsername(HtmlUtils.htmlEscape(user.getUsername()))
+                .setEmail(HtmlUtils.htmlEscape(user.getEmail()))
+                .setPassword(HtmlUtils.htmlEscape(passwordEncoder.encode(user.getPassword())));
+        userRepository.save(userToSave);
+        
+        
+        LOG.info("Saving new user object. Username: {}, Masking email: {} ", userToSave.getUsername(), maskEmail(userToSave.getEmail()));
+        
     }
     
     
-
 }
